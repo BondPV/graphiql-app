@@ -3,4 +3,6 @@ const REGEX_NAME =
 
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
-export { REGEX_NAME, REGEX_EMAIL };
+const REGEX_PASSWORD = /^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$/;
+
+export { REGEX_NAME, REGEX_EMAIL, REGEX_PASSWORD };
