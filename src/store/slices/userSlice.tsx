@@ -1,12 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-// import { ICritique } from '../../../../types/interfaces';
 
-// interface ICritiquesSlice {
-//   cards: Array<ICritique>;
-//   showSendMessage: boolean;
-// }
+interface IUserSlice {
+  email: null | string;
+  token: null | string;
+  id: null | string;
+}
 
-export const initialState = {
+const initialState: IUserSlice = {
   email: null,
   token: null,
   id: null,
@@ -16,7 +16,7 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setUser(state, action) {
+    setUser(state, action: PayloadAction<IUserSlice>) {
       state.email = action.payload.email;
       state.token = action.payload.token;
       state.id = action.payload.id;
