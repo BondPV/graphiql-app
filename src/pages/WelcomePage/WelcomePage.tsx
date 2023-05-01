@@ -1,7 +1,13 @@
-const WelcomePage = (): JSX.Element => (
-  <div>
-    <p>Welcome Page</p>
-  </div>
-);
+import { useTranslation } from 'react-i18next';
+
+const WelcomePage = (): JSX.Element => {
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      <p>{t('welcomePage')}</p>
+    </div>
+  );
+};
 
 export { WelcomePage };
