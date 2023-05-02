@@ -1,4 +1,9 @@
 {
+  "author" : {
+    "Pavel": "Pavel",
+    "Marina": "Marina",
+    "Alesia": "Alesia"
+  },
   "mainPage": "Main Page",
   "welcomePage": "Welcome Page"
 }

@@ -1,0 +1,12 @@
+.footer {
+  &__logo {
+    height: auto;
+    width: 80px;
+    opacity: 0.5;
+    transition: 0.3s all;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
