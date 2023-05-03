@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { AuthorLink } from '../AuthorLink';
 import logoRS from '../../assets/rs-school-js.svg';
 import styles from './Footer.module.scss';
@@ -10,9 +10,12 @@ const authors = [
 ];
 
 const Footer = (): JSX.Element => {
+  const theme = useTheme();
+
   return (
     <Box
       component="footer"
+      bgcolor={theme.palette.grey[200]}
       sx={{
         py: 2,
         px: 2,
@@ -20,7 +23,9 @@ const Footer = (): JSX.Element => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: (theme) => theme.palette.grey[200],
+        [theme.breakpoints.down('sm')]: {
+          flexDirection: 'column',
+        },
       }}
     >
       <Box
@@ -34,6 +39,17 @@ const Footer = (): JSX.Element => {
         </a>
       </Box>
       <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}
+      >
+        {authors.map((author) => (
+          <AuthorLink key={author.name} {...author} />
+        ))}
+      </Box>
+      <Box
         component="span"
         sx={{
           color: 'primary.main',
@@ -41,11 +57,6 @@ const Footer = (): JSX.Element => {
         }}
       >
         2023
-      </Box>
-      <Box>
-        {authors.map((author) => (
-          <AuthorLink key={author.name} {...author} />
-        ))}
       </Box>
     </Box>
   );
