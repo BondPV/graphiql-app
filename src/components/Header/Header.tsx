@@ -10,11 +10,11 @@ import {
   Toolbar,
   Tooltip,
   Typography,
+  useScrollTrigger,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import { LanguageSwitcher } from '../LanguageSwitcher';
-import { useTranslation } from 'react-i18next';
 
 const pages = ['Welcome', 'SignIn', 'SignUp'];
 const settings = ['Profile', 'Logout'];
@@ -22,7 +22,8 @@ const settings = ['Profile', 'Logout'];
 const Header = (): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-  const { t } = useTranslation();
+
+  const trigger = useScrollTrigger({ threshold: 100, disableHysteresis: true });
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
@@ -40,7 +41,10 @@ const Header = (): JSX.Element => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="sticky"
+      sx={{ backgroundColor: `${!trigger ? 'primary.main' : 'primary.dark'}` }}
+    >
       <Toolbar disableGutters>
         <AutoAwesomeMosaicIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
         <Typography
