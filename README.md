@@ -22,6 +22,8 @@
 - [Vite | Next Generation Frontend Tooling](https://vitejs.dev/)
 - [React Hook Form | Simple React forms validation](https://react-hook-form.com/)
 - [Redux Toolkit | Tool set for efficient Redux development](https://redux-toolkit.js.org/)
+- [Material UI | The React component library](https://mui.com/)
+- [React CodeMirror | CodeMirror component for React.](https://uiwjs.github.io/react-codemirror/)
 
 - [Prettier | Opinionated Code Formatter](https://prettier.io/)
 - [ESLint | Code analyzer](https://eslint.org/)

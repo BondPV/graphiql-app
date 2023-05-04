@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { CodeEditor } from '../../components/CodeEditor';
 
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -6,6 +7,7 @@ const WelcomePage = (): JSX.Element => {
   return (
     <div>
       <p>{t('welcomePage')}</p>
+      <CodeEditor />
     </div>
   );
 };
