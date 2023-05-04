@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import { AuthorLink } from '../AuthorLink';
 import logoRS from '../../assets/rs-school-js.svg';
 import styles from './Footer.module.scss';
@@ -10,12 +10,9 @@ const authors = [
 ];
 
 const Footer = (): JSX.Element => {
-  const theme = useTheme();
-
   return (
     <Box
       component="footer"
-      bgcolor={theme.palette.grey[200]}
       sx={{
         py: 2,
         px: 2,
@@ -23,9 +20,8 @@ const Footer = (): JSX.Element => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        [theme.breakpoints.down('sm')]: {
-          flexDirection: 'column',
-        },
+        flexDirection: { sm: 'row', xs: 'column' },
+        backgroundColor: 'grey.200',
       }}
     >
       <Box
