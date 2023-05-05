@@ -4,6 +4,12 @@
     "Marina": "Marina",
     "Alesia": "Alesia"
   },
+  "pages": {
+    "Main": "Playground",
+    "SignIn": "SignIn",
+    "SignUp": "SignUp",
+    "Logout": "Logout"
+  },
   "English": "English",
   "Russian": "Russian",
   "mainPage": "Main Page",

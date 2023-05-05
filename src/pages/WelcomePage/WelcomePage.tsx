@@ -22,6 +22,7 @@ const WelcomePage = (): JSX.Element => {
     <Container maxWidth="xl">
       <div>
         <p>{t('welcomePage')}</p>
+        <button onClick={redirect}>{t('startButton')}</button>
       </div>
     </Container>
   );
