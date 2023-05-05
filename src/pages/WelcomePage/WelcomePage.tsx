@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from '../../App';
 import { useContext } from 'react';
 import { PATCH } from '../../constants';
+import { Container } from '@mui/material';
 
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -18,10 +19,12 @@ const WelcomePage = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <p>{t('welcomePage')}</p>
-      <button onClick={redirect}>{t('startButton')}</button>
-    </div>
+    <Container maxWidth="xl">
+      <div>
+        <p>{t('welcomePage')}</p>
+        <button onClick={redirect}>{t('startButton')}</button>
+      </div>
+    </Container>
   );
 };
 

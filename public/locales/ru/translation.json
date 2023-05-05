@@ -1,4 +1,17 @@
 {
+  "author" : {
+    "Pavel": "Павел",
+    "Marina": "Марина",
+    "Alesia": "Алеся"
+  },
+  "pages": {
+    "Main": "Редактор",
+    "SignIn": "Вход",
+    "SignUp": "Регистрация",
+    "Logout": "Выход"
+  },
+  "English": "Английский",
+  "Russian": "Русский",
   "mainPage": "Главная страница",
   "welcomePage": "Первая страница",
   "startButton": "Старт"

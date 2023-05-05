@@ -26,6 +26,9 @@
 - [React Hook Form | Simple React forms validation](https://react-hook-form.com/)
 - [Redux Toolkit | Tool set for efficient Redux development](https://redux-toolkit.js.org/)
 - [Firebase Authentication | provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users](https://firebase.google.com/)
+- [Material UI | The React component library](https://mui.com/)
+- [React CodeMirror | CodeMirror component for React.](https://uiwjs.github.io/react-codemirror/)
+- [React18 JSON View | Displaying JS arrays and JSON objects.](https://github.com/YYsuni/react18-json-view)
 
 - [Prettier | Opinionated Code Formatter](https://prettier.io/)
 - [ESLint | Code analyzer](https://eslint.org/)

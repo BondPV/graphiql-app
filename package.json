@@ -13,9 +13,16 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.1.7",
+    "@emotion/react": "^11.10.8",
+    "@emotion/styled": "^11.10.8",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.2",
     "@reduxjs/toolkit": "^1.9.3",
     "firebase": "^9.21.0",
     "react-firebase-hooks": "^5.1.1",
+    "@uiw/codemirror-themes": "^4.19.16",
+    "@uiw/react-codemirror": "^4.19.16",
     "i18next": "^22.4.15",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-http-backend": "^2.2.0",
@@ -24,7 +31,8 @@
     "react-hook-form": "^7.43.8",
     "react-i18next": "^12.2.2",
     "react-redux": "^8.0.5",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "react18-json-view": "^0.0.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

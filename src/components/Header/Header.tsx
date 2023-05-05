@@ -1,39 +1,30 @@
-import { LanguageSwitcher } from '../LanguageSwitcher';
-import { useNavigate } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
-import { signOut } from 'firebase/auth';
+import { AppBar, Box, Container, Stack, useScrollTrigger } from '@mui/material';
 import { NavMenu } from '../NavMenu';
-import { AuthContext } from '../../App';
-import { useContext } from 'react';
-import { PATCH } from '../../constants';
+import { Logo } from '../Logo';
+import { LanguageSwitcher } from '../LanguageSwitcher';
 
 const Header = (): JSX.Element => {
-  const navigate = useNavigate();
-  const auth = getAuth();
-  const isAuth = useContext(AuthContext);
-
-  const redirectToWelcomePage = (): void => {
-    navigate('/');
-  };
-
-  const handleLogout = (): void => {
-    signOut(auth)
-      .then(() => {
-        navigate(PATCH.welcomePage);
-      })
-      .catch((error) => {
-        console.log(error.code, error.message);
-      });
-  };
+  const trigger = useScrollTrigger({ threshold: 80, disableHysteresis: true });
 
   return (
-    <header>
-      <p>Header</p>
-      <div onClick={redirectToWelcomePage}>Logo</div>
-      <NavMenu />
-      {isAuth && <button onClick={handleLogout}>Logout</button>}
-      <LanguageSwitcher />
-    </header>
+    <AppBar
+      position="sticky"
+      sx={{ backgroundColor: `${!trigger ? 'primary.dark' : 'primary.main'}` }}
+    >
+      <Container maxWidth="xl">
+        <Stack direction="row" alignItems="center">
+          <Box mr={'auto'} sx={{ order: 1 }}>
+            <Logo />
+          </Box>
+          <Box sx={{ order: { xs: '3', sm: '2' } }}>
+            <NavMenu />
+          </Box>
+          <Box ml={1} sx={{ order: { xs: '2', sm: '3' } }}>
+            <LanguageSwitcher />
+          </Box>
+        </Stack>
+      </Container>
+    </AppBar>
   );
 };
 
