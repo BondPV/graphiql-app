@@ -1,29 +1,26 @@
-import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/redux';
-import { removeUser } from '../../store/slices/userSlice';
+import { useTranslation } from 'react-i18next';
+import { AuthContext } from '../../App';
+import { useContext } from 'react';
+import { PATCH } from '../../constants';
 
 const WelcomePage = (): JSX.Element => {
-  const { isAuth, email } = useAuth();
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  const isAuth = useContext(AuthContext);
 
-  useEffect(() => {
-    if (!isAuth) {
-      navigate('/login');
+  const redirect = (): void => {
+    if (isAuth) {
+      navigate(PATCH.mainPage);
+    } else {
+      navigate(PATCH.signInPage);
     }
-  });
-
-  const logOut = (): void => {
-    dispatch(removeUser());
   };
 
   return (
     <div>
-      <p>Welcome Page</p>
-      <p>Welcome {email}</p>
-      <button onClick={logOut}>Log out</button>
+      <p>{t('welcomePage')}</p>
+      <button onClick={redirect}>{t('startButton')}</button>
     </div>
   );
 };
