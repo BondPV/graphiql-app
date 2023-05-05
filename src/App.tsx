@@ -18,6 +18,7 @@ const App = (): JSX.Element => {
         user.getIdTokenResult().then((idTokenResult) => {
           const expirationTime = new Date(idTokenResult.expirationTime).getTime();
           const currentTime = new Date().getTime();
+
           if (expirationTime > currentTime) {
             setUserIsAuth(true);
           } else {

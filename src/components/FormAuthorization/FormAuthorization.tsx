@@ -36,7 +36,7 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
   const handleLogin = (email: string, password: string): void => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
-      .then(async () => {
+      .then(() => {
         navigate('/main');
       })
       .catch((error) => {
@@ -46,6 +46,7 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
 
   const onSubmitForm = (data: ILoginForm): void => {
     const { email, password } = data;
+
     if (registration) {
       handleRegister(email, password);
     } else {
