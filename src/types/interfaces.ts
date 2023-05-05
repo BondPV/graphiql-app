@@ -3,4 +3,10 @@ interface IExample {
   id: number;
 }
 
-export type { IExample };
+interface ILoginForm {
+  email: string;
+  password: string;
+  repeatPassword?: string;
+}
+
+export type { ILoginForm, IExample };

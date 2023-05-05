@@ -7,6 +7,9 @@ import App from './App';
 import theme from './theme/theme';
 import './i18n';
 import './index.scss';
+import { store } from './store/store';
+import { Provider } from 'react-redux';
+import './firebase';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

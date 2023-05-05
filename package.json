@@ -19,6 +19,8 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",
     "@reduxjs/toolkit": "^1.9.3",
+    "firebase": "^9.21.0",
+    "react-firebase-hooks": "^5.1.1",
     "@uiw/codemirror-themes": "^4.19.16",
     "@uiw/react-codemirror": "^4.19.16",
     "i18next": "^22.4.15",
