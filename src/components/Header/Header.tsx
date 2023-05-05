@@ -24,7 +24,7 @@ const Header = (): JSX.Element => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
-  const trigger = useScrollTrigger({ threshold: 100, disableHysteresis: true });
+  const trigger = useScrollTrigger({ threshold: 80, disableHysteresis: true });
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
@@ -44,7 +44,7 @@ const Header = (): JSX.Element => {
   return (
     <AppBar
       position="sticky"
-      sx={{ backgroundColor: `${!trigger ? 'primary.main' : 'primary.dark'}` }}
+      sx={{ backgroundColor: `${!trigger ? 'primary.dark' : 'primary.main'}` }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>

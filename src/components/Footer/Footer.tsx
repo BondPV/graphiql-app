@@ -1,7 +1,6 @@
-import { Box, Container } from '@mui/material';
+import { Box, Container, Divider } from '@mui/material';
 import { AuthorLink } from '../AuthorLink';
 import logoRS from '../../assets/rs-school-js.svg';
-import styles from './Footer.module.scss';
 
 const authors = [
   { name: 'Pavel', url: 'https://github.com/BondPV' },
@@ -11,18 +10,17 @@ const authors = [
 
 const Footer = (): JSX.Element => {
   return (
-    <Box component="footer" bgcolor={'grey.200'} mt={'auto'}>
+    <Box component="footer" bgcolor={'primary.light'} mt={'auto'}>
       <Container maxWidth="xl">
+        <Divider sx={{ height: '1rem' }} />
         <Box
           sx={{
             py: 2,
             px: 2,
-            // mt: 'auto',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
             flexDirection: { sm: 'row', xs: 'column' },
-            // backgroundColor: 'grey.200',
           }}
         >
           <Box
@@ -32,7 +30,20 @@ const Footer = (): JSX.Element => {
             }}
           >
             <a href="https://rs.school/react/" target="_blank" rel="noreferrer">
-              <img src={logoRS} alt="Rolling Scopes School" className={styles.footer__logo} />
+              <Box
+                component="img"
+                src={logoRS}
+                alt="Rolling Scopes School"
+                sx={{
+                  height: 'auto',
+                  width: '80px',
+                  opacity: '0.5',
+                  transition: '0.3s all',
+                  '&:hover': {
+                    opacity: '1',
+                  },
+                }}
+              />
             </a>
           </Box>
           <Box

@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
-import theme from './styles/theme';
+import theme from './theme/theme';
 import './i18n';
 import './index.scss';
 

@@ -3,8 +3,14 @@ import { red } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
+    background: {
+      default: '#DADEEA',
+    },
     primary: {
-      main: '#556cd6',
+      light: '#DADEEA',
+      main: '#929fc1',
+      dark: '#001E6A',
+      contrastText: '#FFFFFF',
     },
     secondary: {
       main: '#19857b',
@@ -21,6 +27,14 @@ const theme = createTheme({
       lg: 1200,
       xl: 1920,
     },
+  },
+  typography: {
+    fontFamily: 'Rubik, sans-serif',
+    fontSize: 16,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 700,
   },
 });
 
