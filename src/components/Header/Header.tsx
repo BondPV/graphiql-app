@@ -1,16 +1,10 @@
-import { AppBar, Container, Toolbar, Typography, useScrollTrigger } from '@mui/material';
-import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
-import { useNavigate } from 'react-router-dom';
+import { AppBar, Box, Container, Stack, useScrollTrigger } from '@mui/material';
 import { NavMenu } from '../NavMenu';
+import { Logo } from '../Logo';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 
 const Header = (): JSX.Element => {
   const trigger = useScrollTrigger({ threshold: 80, disableHysteresis: true });
-  const navigate = useNavigate();
-
-  const redirectToWelcomePage = (): void => {
-    navigate('/');
-  };
 
   return (
     <AppBar
@@ -18,28 +12,17 @@ const Header = (): JSX.Element => {
       sx={{ backgroundColor: `${!trigger ? 'primary.dark' : 'primary.main'}` }}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AutoAwesomeMosaicIcon sx={{ display: { sm: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            onClick={redirectToWelcomePage}
-            sx={{
-              mr: 'auto',
-              display: { xs: 'none', sm: 'flex' },
-              fontWeight: 700,
-              letterSpacing: '.2rem',
-              color: 'inherit',
-              textDecoration: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            LOGO
-          </Typography>
-          <NavMenu />
-          <LanguageSwitcher />
-        </Toolbar>
+        <Stack direction="row" alignItems="center">
+          <Box mr={'auto'} sx={{ order: 1 }}>
+            <Logo />
+          </Box>
+          <Box sx={{ order: { xs: '3', sm: '2' } }}>
+            <NavMenu />
+          </Box>
+          <Box ml={1} sx={{ order: { xs: '2', sm: '3' } }}>
+            <LanguageSwitcher />
+          </Box>
+        </Stack>
       </Container>
     </AppBar>
   );

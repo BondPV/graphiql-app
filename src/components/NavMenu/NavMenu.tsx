@@ -34,20 +34,25 @@ const NavMenu = (): JSX.Element => {
   };
 
   const handleRoute = (page: string): void => {
-    if (page === 'SignIn') {
-      navigate(PATCH.signInPage);
-    }
+    switch (page) {
+      case 'SignIn':
+        navigate(PATCH.signInPage);
+        break;
 
-    if (page === 'SignUp') {
-      navigate(PATCH.signUpPage);
-    }
+      case 'SignUp':
+        navigate(PATCH.signUpPage);
+        break;
 
-    if (page === 'Logout') {
-      handleLogout();
-    }
+      case 'Logout':
+        handleLogout();
+        break;
 
-    if (page === 'Main') {
-      navigate(PATCH.mainPage);
+      case 'Main':
+        navigate(PATCH.mainPage);
+        break;
+
+      default:
+        break;
     }
 
     handleCloseNavMenu();
@@ -62,8 +67,8 @@ const NavMenu = (): JSX.Element => {
   }, [isAuth]);
 
   return (
-    <>
-      <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+    <nav>
+      <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -110,7 +115,7 @@ const NavMenu = (): JSX.Element => {
           </Button>
         ))}
       </Box>
-    </>
+    </nav>
   );
 };
 
