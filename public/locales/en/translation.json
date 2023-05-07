@@ -14,5 +14,20 @@
   "Russian": "Russian",
   "mainPage": "Main Page",
   "welcomePage": "Welcome Page",
-  "startButton": "Start"
+  "startButton": "Start",
+  "errors": {
+    "fieldIsEmpty": "field is empty",
+    "invalidEmail": "the email is not valid",
+    "invalidPassword": "password should have a minimum length of 8 symbols, at least one letter, one digit, one special character",
+    "passwordMismatch": "the passwords don't match"
+  },
+  "formAuthorization": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "labelEmail": "Email",
+    "labelPassword": "Password",
+    "labelRepeatPassword": "Repeat password",
+    "createAccountLink": "Don`t have an account? Create an account →",
+    "navigateToSignInLink": "Already have an account? Sign in →"
+  }
 }

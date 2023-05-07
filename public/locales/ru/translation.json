@@ -14,5 +14,20 @@
   "Russian": "Русский",
   "mainPage": "Главная страница",
   "welcomePage": "Первая страница",
-  "startButton": "Старт"
+  "startButton": "Старт",
+  "errors": {
+    "fieldIsEmpty": "поле не заполнено",
+    "invalidEmail": "введенный адрес не валиден",
+    "invalidPassword": "длина пароля должна быть более 8 символов, включать 1 букву, 1 цифру и 1 символ",
+    "passwordMismatch": "введенные пароли не совпадают"
+  },
+  "formAuthorization": {
+    "signIn": "Войти",
+    "signUp": "Регистрация",
+    "labelEmail": "Электронаая почта",
+    "labelPassword": "Пароль",
+    "labelRepeatPassword": "Повторите пароль",
+    "createAccountLink": "У вас еще нет аккаунта? Создать аккаунт →",
+    "navigateToSignInLink": "Уже имеется аккаунт? Войти →"
+  }
 }

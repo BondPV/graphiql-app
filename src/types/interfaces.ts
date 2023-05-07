@@ -9,4 +9,8 @@ interface ILoginForm {
   repeatPassword?: string;
 }
 
-export type { ILoginForm, IExample };
+interface ConstantTranslationFunction {
+  [key: string]: string;
+}
+
+export type { ILoginForm, IExample, ConstantTranslationFunction };
