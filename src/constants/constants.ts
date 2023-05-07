@@ -10,4 +10,12 @@ const PATCH = {
   errorPage: '*',
 };
 
-export { REGEX_EMAIL, REGEX_PASSWORD, PATCH };
+const ERROR_MESSAGE = {
+  emptyLine: 'field is empty',
+  invalidEmail: 'the email is not valid',
+  invalidPassword:
+    'password should have a minimum length of 8 symbols, at least one letter, one digit, one special character',
+  passwordMismatch: "The passwords don't match",
+};
+
+export { REGEX_EMAIL, REGEX_PASSWORD, PATCH, ERROR_MESSAGE };

@@ -2,7 +2,24 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { useForm } from 'react-hook-form';
 import { ILoginForm } from '../../types';
 import { useNavigate } from 'react-router-dom';
-import { PATCH } from '../../constants';
+import { ERROR_MESSAGE, PATCH, REGEX_EMAIL, REGEX_PASSWORD } from '../../constants';
+import { Box, Button, Link, TextField, Typography, styled } from '@mui/material';
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#001E6A',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#001E6A',
+  },
+  '& .MuiOutlinedInput-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#001E6A',
+      borderLeftWidth: 6,
+      padding: '4px',
+    },
+  },
+});
 
 const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
   const navigate = useNavigate();
@@ -11,6 +28,7 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -63,58 +81,93 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
   };
 
   return (
-    <div>
-      <h2>Sign up</h2>
-      <form>
-        <div>
-          <label htmlFor="email">Email address</label>
-          <input
-            type="text"
-            placeholder="Email"
-            {...register('email', {
-              required: 'empty',
-            })}
-          />
-        </div>
-        {errors.email && <span>{errors.email.message}</span>}
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="text"
-            placeholder="Password"
-            {...register('password', {
-              required: 'empty',
-            })}
-          />
-        </div>
-        {errors.password && <span>{errors.password.message}</span>}
+    <Box
+      component="div"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      width={400}
+      gap={2}
+      my={2}
+      mx="auto"
+      color="primary.dark"
+      height="70vh"
+    >
+      <Typography component="h2" variant="h5" align="center" sx={{ color: 'primary.dark' }}>
+        {registration ? 'Sign up' : 'Sign In'}
+      </Typography>
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 2,
+          mx: 'auto',
+          width: '100%',
+        }}
+      >
+        <CssTextField
+          error={!!errors.email}
+          label="Email"
+          fullWidth
+          helperText={errors?.email?.message}
+          {...register('email', {
+            required: ERROR_MESSAGE.emptyLine,
+            pattern: { value: REGEX_EMAIL, message: ERROR_MESSAGE.invalidEmail },
+          })}
+        />
+        <CssTextField
+          error={!!errors.password}
+          label="Password"
+          type="password"
+          fullWidth
+          helperText={errors?.password?.message}
+          {...register('password', {
+            required: ERROR_MESSAGE.emptyLine,
+            pattern: { value: REGEX_PASSWORD, message: ERROR_MESSAGE.invalidPassword },
+          })}
+        />
         {registration && (
-          <div>
-            <label htmlFor="repeatPassword">Repeat password</label>
-            <input
-              type="text"
-              placeholder="Repeat Password"
-              {...register('repeatPassword', {
-                required: 'empty',
-              })}
-            />
-          </div>
+          <CssTextField
+            error={!!errors.repeatPassword}
+            label="Repeat password"
+            type="password"
+            fullWidth
+            helperText={errors?.repeatPassword?.message}
+            {...register('repeatPassword', {
+              required: ERROR_MESSAGE.emptyLine,
+              validate: (value) => value === watch('password') || ERROR_MESSAGE.passwordMismatch,
+            })}
+          />
         )}
-        {errors.repeatPassword && <span>{errors.repeatPassword.message}</span>}
-        <button onClick={handleSubmit(onSubmitForm)}>{registration ? 'Sign Up' : 'Sign In'}</button>
-      </form>
+        <Button variant="contained" fullWidth onClick={handleSubmit(onSubmitForm)}>
+          {registration ? 'Sign Up' : 'Sign In'}
+        </Button>
+      </Box>
       {registration ? (
-        <div>
-          <span>Already have an account?</span>
-          <span onClick={redirectToSignInPage}>Sign in →</span>
-        </div>
+        <Link
+          component="button"
+          onClick={redirectToSignInPage}
+          underline="hover"
+          sx={{ color: 'primary.dark', outlineColor: 'primary.dark' }}
+        >
+          Already have an account? Sign in →
+        </Link>
       ) : (
-        <div>
-          <span>New to GraphQL Playground?</span>
-          <span onClick={redirectToSignUpPage}>Create an account.</span>
-        </div>
+        <Link
+          component="button"
+          underline="hover"
+          onClick={redirectToSignUpPage}
+          sx={{ color: 'primary.dark', outlineColor: 'primary.dark' }}
+        >
+          Don`t have an account? Create an account →
+        </Link>
       )}
-    </div>
+    </Box>
   );
 };
 
