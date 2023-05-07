@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { userRequestReducer } from '../slice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    userRequest: userRequestReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

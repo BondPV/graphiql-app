@@ -6,10 +6,10 @@ import { ThemeProvider } from '@mui/material/styles';
 import App from './App';
 import theme from './theme/theme';
 import './i18n';
-import './index.scss';
-import { store } from './store/store';
+import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import './firebase';
+import './index.scss';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
