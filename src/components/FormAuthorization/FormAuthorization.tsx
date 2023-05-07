@@ -2,9 +2,16 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { useForm } from 'react-hook-form';
 import { ILoginForm } from '../../types';
 import { useNavigate } from 'react-router-dom';
-import { ERROR_MESSAGE, PATCH, REGEX_EMAIL, REGEX_PASSWORD } from '../../constants';
-import { Box, Button, Link, TextField, Typography, styled } from '@mui/material';
+import {
+  ERROR_CODES_FIREBASE,
+  ERROR_MESSAGE,
+  PATCH,
+  REGEX_EMAIL,
+  REGEX_PASSWORD,
+} from '../../constants';
+import { Alert, Box, Button, Link, Snackbar, TextField, Typography, styled } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -26,6 +33,16 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { registration } = props;
+  const [error, setError] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const {
     register,
@@ -47,7 +64,12 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
         navigate('/main');
       })
       .catch((error) => {
-        console.log(error.code, error.message);
+        if (error.code === ERROR_CODES_FIREBASE.emailAlreadyInUse) {
+          setError(ERROR_MESSAGE(t).emailAlreadyInUse);
+        } else {
+          setError(ERROR_MESSAGE(t).unknownError);
+        }
+        setOpen(true);
       });
   };
 
@@ -55,10 +77,24 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        navigate('/main');
+        navigate(PATCH.mainPage);
       })
       .catch((error) => {
-        console.log(error.code, error.message);
+        switch (error.code) {
+          case ERROR_CODES_FIREBASE.wrongPassword:
+            setError(ERROR_MESSAGE(t).wrongPassword);
+            break;
+          case ERROR_CODES_FIREBASE.userNotFound:
+            setError(ERROR_MESSAGE(t).userNotFound);
+            break;
+          case ERROR_CODES_FIREBASE.invalidEmailFirebase:
+            setError(ERROR_MESSAGE(t).invalidEmailFirebase);
+            break;
+          default:
+            setError(ERROR_MESSAGE(t).unknownError);
+            break;
+        }
+        setOpen(true);
       });
   };
 
@@ -169,6 +205,19 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
           {t('formAuthorization.createAccountLink')}
         </Link>
       )}
+      <Snackbar
+        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+        open={open}
+        autoHideDuration={5000}
+        onClose={handleClose}
+        sx={{
+          marginBottom: 10,
+        }}
+      >
+        <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
+          {error}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

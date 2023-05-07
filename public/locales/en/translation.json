@@ -19,7 +19,12 @@
     "fieldIsEmpty": "field is empty",
     "invalidEmail": "the email is not valid",
     "invalidPassword": "password should have a minimum length of 8 symbols, at least one letter, one digit, one special character",
-    "passwordMismatch": "the passwords don't match"
+    "passwordMismatch": "the passwords don't match",
+    "unknownError": "Something went wrong, try again later.",
+    "emailAlreadyInUse": "This email address is already registered.",
+    "wrongPassword": "Incorrect password entered.",
+    "userNotFound": "The user with this email address is not registered, please go to the registration",
+    "invalidEmailFirebase": "Invalid email address entered"
   },
   "formAuthorization": {
     "signIn": "Sign In",
