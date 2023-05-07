@@ -9,7 +9,17 @@ import {
   REGEX_EMAIL,
   REGEX_PASSWORD,
 } from '../../constants';
-import { Alert, Box, Button, Link, Snackbar, TextField, Typography, styled } from '@mui/material';
+import {
+  Alert,
+  Avatar,
+  Box,
+  Button,
+  Link,
+  Snackbar,
+  TextField,
+  Typography,
+  styled,
+} from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
@@ -29,10 +39,9 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
+const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Element => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { registration } = props;
   const [error, setError] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -94,6 +103,7 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
             setError(ERROR_MESSAGE(t).unknownError);
             break;
         }
+
         setOpen(true);
       });
   };
@@ -123,6 +133,7 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        alignItems: 'center',
         width: 400,
         gap: 2,
         my: 2,
@@ -131,6 +142,7 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
         height: '70vh',
       }}
     >
+      <Avatar src="/broken-image.jpg" sx={{ bgcolor: 'primary.dark' }} />
       <Typography component="h2" variant="h5" align="center" sx={{ color: 'primary.dark' }}>
         {registration ? t('formAuthorization.signUp') : t('formAuthorization.signIn')}
       </Typography>
