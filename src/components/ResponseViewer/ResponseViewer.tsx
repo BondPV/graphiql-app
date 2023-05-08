@@ -1,16 +1,13 @@
 import JsonView from 'react18-json-view';
 import '../../theme/styleViewer.css';
-
-const JSON = {
-  data: {
-    name: 'RS',
-  },
-};
+import { useAppSelector } from '../../hooks/redux';
 
 const ResponseViewer = (): JSX.Element => {
+  const editorResponse = useAppSelector((state) => state.editorResponse);
+
   return (
     <div>
-      <JsonView src={JSON} />;
+      <JsonView src={editorResponse.value} />;
     </div>
   );
 };

@@ -8,7 +8,7 @@ import { setRequest } from '../../redux/slice';
 const extensions = [javascript({ jsx: true })];
 
 const CodeEditor = (): JSX.Element => {
-  const userRequest = useAppSelector((state) => state.userRequest);
+  const editorRequest = useAppSelector((state) => state.editorRequest);
   const dispatch = useAppDispatch();
 
   const onChange = useCallback(
@@ -21,7 +21,7 @@ const CodeEditor = (): JSX.Element => {
   return (
     <div>
       <CodeMirror
-        value={userRequest.value}
+        value={editorRequest.value}
         height="auto"
         theme={codeEditorTheme}
         extensions={extensions}

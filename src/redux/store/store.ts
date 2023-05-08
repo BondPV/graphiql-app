@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { userRequestReducer } from '../slice';
+import { editorRequestReducer } from '../slice';
+import { editorResponseReducer } from '../slice';
 
 export const store = configureStore({
   reducer: {
-    userRequest: userRequestReducer,
+    editorRequest: editorRequestReducer,
+    editorResponse: editorResponseReducer,
   },
 });
 

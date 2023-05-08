@@ -1,12 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const defaultRequest = `query GetData {
-  ...param
+const defaultRequest = `query GetCountry {
+  country(code: "BY") {
+    name
+    native
+    capital
+    currency
+  }
 }`;
 
 const initialState = { value: defaultRequest };
 
-const userRequest = createSlice({
+const editorRequest = createSlice({
   name: 'request',
   initialState,
   reducers: {
@@ -16,5 +21,5 @@ const userRequest = createSlice({
   },
 });
 
-export const { setRequest } = userRequest.actions;
-export const userRequestReducer = userRequest.reducer;
+export const { setRequest } = editorRequest.actions;
+export const editorRequestReducer = editorRequest.reducer;
