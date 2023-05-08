@@ -14,6 +14,7 @@ import {
   Avatar,
   Box,
   Button,
+  Container,
   Link,
   Snackbar,
   TextField,
@@ -127,17 +128,16 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
   };
 
   return (
-    <Box
-      component="div"
+    <Container
       sx={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: 400,
+        maxWidth: 400,
         gap: 2,
         my: 2,
-        mx: 'auto',
+        mx: '2',
         color: 'primary.dark',
         height: '70vh',
       }}
@@ -230,7 +230,7 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
           {error}
         </Alert>
       </Snackbar>
-    </Box>
+    </Container>
   );
 };
 
