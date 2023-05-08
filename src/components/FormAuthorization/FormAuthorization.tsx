@@ -2,15 +2,62 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { useForm } from 'react-hook-form';
 import { ILoginForm } from '../../types';
 import { useNavigate } from 'react-router-dom';
-import { PATCH } from '../../constants';
+import {
+  ERROR_CODES_FIREBASE,
+  ERROR_MESSAGE,
+  PATCH,
+  REGEX_EMAIL,
+  REGEX_PASSWORD,
+} from '../../constants';
+import {
+  Alert,
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Link,
+  Snackbar,
+  TextField,
+  Typography,
+  styled,
+} from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 
-const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#001E6A',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#001E6A',
+  },
+  '& .MuiOutlinedInput-root': {
+    '&.Mui-focused fieldset': {
+      borderColor: '#001E6A',
+      borderLeftWidth: 6,
+      padding: '4px',
+    },
+  },
+});
+
+const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Element => {
   const navigate = useNavigate();
-  const { registration } = props;
+  const { t } = useTranslation();
+  const [error, setError] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -18,8 +65,6 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
       password: '',
       repeatPassword: '',
     },
-    mode: 'onSubmit',
-    reValidateMode: 'onSubmit',
   });
 
   const handleRegister = (email: string, password: string): void => {
@@ -29,7 +74,12 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
         navigate('/main');
       })
       .catch((error) => {
-        console.log(error.code, error.message);
+        if (error.code === ERROR_CODES_FIREBASE.emailAlreadyInUse) {
+          setError(ERROR_MESSAGE(t).emailAlreadyInUse);
+        } else {
+          setError(ERROR_MESSAGE(t).unknownError);
+        }
+        setOpen(true);
       });
   };
 
@@ -37,10 +87,25 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        navigate('/main');
+        navigate(PATCH.mainPage);
       })
       .catch((error) => {
-        console.log(error.code, error.message);
+        switch (error.code) {
+          case ERROR_CODES_FIREBASE.wrongPassword:
+            setError(ERROR_MESSAGE(t).wrongPassword);
+            break;
+          case ERROR_CODES_FIREBASE.userNotFound:
+            setError(ERROR_MESSAGE(t).userNotFound);
+            break;
+          case ERROR_CODES_FIREBASE.invalidEmailFirebase:
+            setError(ERROR_MESSAGE(t).invalidEmailFirebase);
+            break;
+          default:
+            setError(ERROR_MESSAGE(t).unknownError);
+            break;
+        }
+
+        setOpen(true);
       });
   };
 
@@ -63,58 +128,109 @@ const FormAuthorization = (props: { registration: boolean }): JSX.Element => {
   };
 
   return (
-    <div>
-      <h2>Sign up</h2>
-      <form>
-        <div>
-          <label htmlFor="email">Email address</label>
-          <input
-            type="text"
-            placeholder="Email"
-            {...register('email', {
-              required: 'empty',
-            })}
-          />
-        </div>
-        {errors.email && <span>{errors.email.message}</span>}
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="text"
-            placeholder="Password"
-            {...register('password', {
-              required: 'empty',
-            })}
-          />
-        </div>
-        {errors.password && <span>{errors.password.message}</span>}
+    <Container
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxWidth: 400,
+        gap: 2,
+        my: 2,
+        mx: '2',
+        color: 'primary.dark',
+        height: '70vh',
+      }}
+    >
+      <Avatar src="/broken-image.jpg" sx={{ bgcolor: 'primary.dark' }} />
+      <Typography component="h2" variant="h5" align="center" sx={{ color: 'primary.dark' }}>
+        {registration ? t('formAuthorization.signUp') : t('formAuthorization.signIn')}
+      </Typography>
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 2,
+          mx: 'auto',
+          width: '100%',
+        }}
+      >
+        <CssTextField
+          error={!!errors.email}
+          label={t('formAuthorization.labelEmail')}
+          fullWidth
+          helperText={errors?.email?.message}
+          {...register('email', {
+            required: ERROR_MESSAGE(t).emptyLine,
+            pattern: { value: REGEX_EMAIL, message: ERROR_MESSAGE(t).invalidEmail },
+          })}
+        />
+        <CssTextField
+          error={!!errors.password}
+          label={t('formAuthorization.labelPassword')}
+          type="password"
+          fullWidth
+          helperText={errors?.password?.message}
+          {...register('password', {
+            required: ERROR_MESSAGE(t).emptyLine,
+            pattern: { value: REGEX_PASSWORD, message: ERROR_MESSAGE(t).invalidPassword },
+          })}
+        />
         {registration && (
-          <div>
-            <label htmlFor="repeatPassword">Repeat password</label>
-            <input
-              type="text"
-              placeholder="Repeat Password"
-              {...register('repeatPassword', {
-                required: 'empty',
-              })}
-            />
-          </div>
+          <CssTextField
+            error={!!errors.repeatPassword}
+            label={t('formAuthorization.labelRepeatPassword')}
+            type="password"
+            fullWidth
+            helperText={errors?.repeatPassword?.message}
+            {...register('repeatPassword', {
+              required: ERROR_MESSAGE(t).emptyLine,
+              validate: (value) => value === watch('password') || ERROR_MESSAGE(t).passwordMismatch,
+            })}
+          />
         )}
-        {errors.repeatPassword && <span>{errors.repeatPassword.message}</span>}
-        <button onClick={handleSubmit(onSubmitForm)}>{registration ? 'Sign Up' : 'Sign In'}</button>
-      </form>
+        <Button variant="contained" fullWidth onClick={handleSubmit(onSubmitForm)}>
+          {registration ? t('formAuthorization.signUp') : t('formAuthorization.signIn')}
+        </Button>
+      </Box>
       {registration ? (
-        <div>
-          <span>Already have an account?</span>
-          <span onClick={redirectToSignInPage}>Sign in →</span>
-        </div>
+        <Link
+          component="button"
+          onClick={redirectToSignInPage}
+          underline="hover"
+          sx={{ color: 'primary.dark', outlineColor: 'primary.dark' }}
+        >
+          {t('formAuthorization.navigateToSignInLink')}
+        </Link>
       ) : (
-        <div>
-          <span>New to GraphQL Playground?</span>
-          <span onClick={redirectToSignUpPage}>Create an account.</span>
-        </div>
+        <Link
+          component="button"
+          underline="hover"
+          onClick={redirectToSignUpPage}
+          sx={{ color: 'primary.dark', outlineColor: 'primary.dark' }}
+        >
+          {t('formAuthorization.createAccountLink')}
+        </Link>
       )}
-    </div>
+      <Snackbar
+        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+        open={open}
+        autoHideDuration={5000}
+        onClose={handleClose}
+        sx={{
+          marginBottom: 10,
+        }}
+      >
+        <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
+          {error}
+        </Alert>
+      </Snackbar>
+    </Container>
   );
 };
 
