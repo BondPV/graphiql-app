@@ -1,9 +1,16 @@
 import { Button } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { responseToGraphQL } from '../../Api/Api';
+import { setResponse } from '../../redux/slice/editorResponseSlice';
 
 const ButtonExecute = (): JSX.Element => {
-  const handleClick = (): void => {
-    console.log('click');
+  const dispatch = useAppDispatch();
+  const editorRequest = useAppSelector((state) => state.editorRequest).value;
+
+  const handleClick = async (): Promise<void> => {
+    const value = await responseToGraphQL(editorRequest);
+    dispatch(setResponse(value));
   };
 
   return (

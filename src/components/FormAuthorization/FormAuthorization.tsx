@@ -15,6 +15,8 @@ import {
   Box,
   Button,
   Container,
+  IconButton,
+  InputAdornment,
   Link,
   Snackbar,
   TextField,
@@ -23,6 +25,7 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -45,6 +48,7 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
   const { t } = useTranslation();
   const [error, setError] = useState('');
   const [open, setOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
     if (reason === 'clickaway') {
@@ -127,14 +131,16 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
     navigate(PATCH.signUpPage);
   };
 
+  const handleClickShowPassword = (): void => setShowPassword(!showPassword);
+
   return (
     <Container
+      maxWidth="sm"
       sx={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        maxWidth: 400,
         gap: 2,
         my: 2,
         mx: '2',
@@ -173,19 +179,31 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
         <CssTextField
           error={!!errors.password}
           label={t('formAuthorization.labelPassword')}
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           fullWidth
           helperText={errors?.password?.message}
           {...register('password', {
             required: ERROR_MESSAGE(t).emptyLine,
             pattern: { value: REGEX_PASSWORD, message: ERROR_MESSAGE(t).invalidPassword },
           })}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         {registration && (
           <CssTextField
             error={!!errors.repeatPassword}
             label={t('formAuthorization.labelRepeatPassword')}
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             fullWidth
             helperText={errors?.repeatPassword?.message}
             {...register('repeatPassword', {
