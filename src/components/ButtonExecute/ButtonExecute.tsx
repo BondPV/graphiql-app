@@ -6,7 +6,7 @@ import { setResponse } from '../../redux/slice/editorResponseSlice';
 
 const ButtonExecute = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const editorRequest = useAppSelector((state) => state.editorRequest).value;
+  const editorRequest = useAppSelector((state) => state.editorRequest).query;
 
   const handleClick = async (): Promise<void> => {
     const value = await responseToGraphQL(editorRequest);
