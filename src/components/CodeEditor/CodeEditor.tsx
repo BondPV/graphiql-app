@@ -12,7 +12,7 @@ import { setRequestHeaders, setRequestQuery, setRequestVariables } from '../../r
 const extensions = [javascript({ jsx: true })];
 
 const CodeEditor = (): JSX.Element => {
-  const [tab, setTab] = useState('variables');
+  const [tab, setTab] = useState('notActive');
   const [showTabContent, setShowTabContent] = useState(true);
   const editorRequest = useAppSelector((state) => state.editorRequest);
   const dispatch = useAppDispatch();
@@ -48,16 +48,22 @@ const CodeEditor = (): JSX.Element => {
     }
 
     if (element === 'arrow') {
+      if (tab === 'notActive') {
+        setTab('variables');
+      } else {
+        setTab('notActive');
+      }
+
       setShowTabContent(!showTabContent);
     }
   };
 
   return (
-    <>
-      <Box data-name="query">
+    <Stack>
+      <Box aria-label="query" flexGrow={'1'}>
         <CodeMirror
           value={editorRequest.query}
-          height="auto"
+          // height="100%"
           theme={codeEditorTheme}
           extensions={extensions}
           onChange={onChangeQuery}
@@ -67,11 +73,8 @@ const CodeEditor = (): JSX.Element => {
       <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={tab}>
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
-            <TabList
-              onChange={handleChangeTab}
-              aria-label="tabs"
-              onClick={(): void => handleShowTabContent('tab')}
-            >
+            <TabList onChange={handleChangeTab} onClick={(): void => handleShowTabContent('tab')}>
+              <Tab label="notActive" value="notActive" sx={{ display: 'none' }} />
               <Tab label="Variables" value="variables" sx={{ textTransform: 'none' }} />
               <Tab label="Headers" value="headers" sx={{ textTransform: 'none' }} />
             </TabList>
@@ -101,7 +104,7 @@ const CodeEditor = (): JSX.Element => {
           </Box>
         </TabContext>
       </Box>
-    </>
+    </Stack>
   );
 };
 

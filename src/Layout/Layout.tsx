@@ -14,9 +14,9 @@ const Layout = (): JSX.Element => {
     >
       <Header />
 
-      <main>
+      <Box component="main">
         <Outlet />
-      </main>
+      </Box>
 
       <Footer />
     </Box>
