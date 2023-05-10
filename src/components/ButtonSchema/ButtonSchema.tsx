@@ -30,9 +30,9 @@ const ButtonSchema = (): JSX.Element => {
   };
 
   return (
-    <Tooltip title={t('Documentation')} placement="top">
+    <Tooltip title={t('Documentation')} placement="bottom">
       <IconButton onClick={handleClickGetSchema}>
-        <DescriptionIcon />
+        <DescriptionIcon sx={{ fontSize: '30px' }} />
       </IconButton>
     </Tooltip>
   );

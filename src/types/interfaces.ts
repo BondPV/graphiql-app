@@ -9,8 +9,14 @@ interface ILoginForm {
   repeatPassword?: string;
 }
 
-interface ConstantTranslationFunction {
+interface IConstantTranslationFunc {
   [key: string]: string;
 }
 
-export type { ILoginForm, IExample, ConstantTranslationFunction };
+interface IEditorRequest {
+  query: string;
+  variables: string;
+  headers: string;
+}
+
+export type { ILoginForm, IExample, IConstantTranslationFunc, IEditorRequest };

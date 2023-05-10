@@ -1,3 +1,17 @@
+* {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #DADEEA;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #929fc1;
+  }
+}
+
 .MuiTabs-indicator {
   display: none;
 }

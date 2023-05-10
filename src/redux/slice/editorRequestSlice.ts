@@ -1,24 +1,31 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IEditorRequest } from '../../types';
 
-interface IEditorRequest {
-  query: string;
-  variables: string;
-  headers: string;
-}
-
-const defaultQuery = `query GetCountry {
-  country(code: "BY") {
+const defaultQuery = `query GetCountry($code: ID!) {
+  country(code: $code) {
     name
-    native
+    awsRegion
     capital
+    currencies
     currency
+    languages{
+      name
+      native
+    }
+    native
+    phone
+    phones
   }
+}`;
+
+const defaultVariables = `{ 
+  "code": "BY"
 }`;
 
 const initialState: IEditorRequest = {
   query: defaultQuery,
-  variables: 'variables',
-  headers: 'headers',
+  variables: defaultVariables,
+  headers: '',
 };
 
 const editorRequest = createSlice({

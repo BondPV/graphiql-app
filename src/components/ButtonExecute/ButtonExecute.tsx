@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 const ButtonExecute = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const editorRequest = useAppSelector((state) => state.editorRequest).query;
+  const editorRequest = useAppSelector((state) => state.editorRequest);
 
   const handleClick = async (): Promise<void> => {
     const value = await responseToGraphQL(editorRequest);
@@ -24,7 +24,7 @@ const ButtonExecute = (): JSX.Element => {
         }}
         onClick={handleClick}
       >
-        <ArrowCircleRightIcon style={{ fontSize: 60 }} />
+        <ArrowCircleRightIcon sx={{ fontSize: '60px' }} />
       </IconButton>
     </Tooltip>
   );

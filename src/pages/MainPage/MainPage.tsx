@@ -40,7 +40,7 @@ const MainPage = (): JSX.Element => {
             >
               <CodeEditor />
             </Box>
-            <Stack gap={2}>
+            <Stack gap={2} alignItems={'center'}>
               <ButtonExecute />
               <ButtonSchema />
             </Stack>
