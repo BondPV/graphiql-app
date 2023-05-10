@@ -12,7 +12,7 @@ import { setRequestHeaders, setRequestQuery, setRequestVariables } from '../../r
 const extensions = [javascript({ jsx: true })];
 
 const CodeEditor = (): JSX.Element => {
-  const [tab, setTab] = useState('notActive');
+  const [tab, setTab] = useState('variables');
   const [showTabContent, setShowTabContent] = useState(true);
   const editorRequest = useAppSelector((state) => state.editorRequest);
   const dispatch = useAppDispatch();
@@ -48,22 +48,16 @@ const CodeEditor = (): JSX.Element => {
     }
 
     if (element === 'arrow') {
-      if (tab === 'notActive') {
-        setTab('variables');
-      } else {
-        setTab('notActive');
-      }
-
       setShowTabContent(!showTabContent);
     }
   };
 
   return (
-    <Stack>
-      <Box aria-label="query" flexGrow={'1'}>
+    <Stack direction={'column'} sx={{ height: { xs: 'auto', md: '75vh' } }}>
+      <Box aria-label="query" height="100%" overflow={'auto'}>
         <CodeMirror
           value={editorRequest.query}
-          // height="100%"
+          height="100%"
           theme={codeEditorTheme}
           extensions={extensions}
           onChange={onChangeQuery}
@@ -74,19 +68,18 @@ const CodeEditor = (): JSX.Element => {
         <TabContext value={tab}>
           <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'}>
             <TabList onChange={handleChangeTab} onClick={(): void => handleShowTabContent('tab')}>
-              <Tab label="notActive" value="notActive" sx={{ display: 'none' }} />
               <Tab label="Variables" value="variables" sx={{ textTransform: 'none' }} />
               <Tab label="Headers" value="headers" sx={{ textTransform: 'none' }} />
             </TabList>
             <Box onClick={(): void => handleShowTabContent('arrow')}>
-              <IconButton>{showTabContent ? <ExpandMoreIcon /> : <ExpandLessIcon />}</IconButton>
+              <IconButton>{!showTabContent ? <ExpandMoreIcon /> : <ExpandLessIcon />}</IconButton>
             </Box>
           </Stack>
-          <Box hidden={showTabContent}>
+          <Box hidden={showTabContent} height={'150px'} overflow={'auto'}>
             <TabPanel value="variables" sx={{ padding: '1rem 0' }}>
               <CodeMirror
                 value={editorRequest.variables}
-                height="auto"
+                height="100%"
                 theme={codeEditorTheme}
                 extensions={extensions}
                 onChange={onChangeVariables}
@@ -95,7 +88,7 @@ const CodeEditor = (): JSX.Element => {
             <TabPanel value="headers" sx={{ padding: '1rem 0' }}>
               <CodeMirror
                 value={editorRequest.headers}
-                height="auto"
+                height="100%"
                 theme={codeEditorTheme}
                 extensions={extensions}
                 onChange={onChangeHeaders}

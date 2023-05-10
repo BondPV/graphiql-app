@@ -10,7 +10,7 @@
 
 ### 🔗 Deploy
 
--
+- https://rss-graphiql-app.netlify.app/
 
 ### 🛠️ Run project
 

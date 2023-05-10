@@ -1,10 +1,12 @@
-import { Button } from '@mui/material';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { IconButton, Tooltip } from '@mui/material';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { responseToGraphQL } from '../../Api/Api';
 import { setResponse } from '../../redux/slice/editorResponseSlice';
+import { useTranslation } from 'react-i18next';
 
 const ButtonExecute = (): JSX.Element => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const editorRequest = useAppSelector((state) => state.editorRequest).query;
 
@@ -14,15 +16,17 @@ const ButtonExecute = (): JSX.Element => {
   };
 
   return (
-    <Button
-      variant="contained"
-      sx={{
-        zIndex: 100,
-      }}
-      onClick={handleClick}
-    >
-      <ArrowForwardIcon />
-    </Button>
+    <Tooltip title={t('ExecuteQuery')} placement="top">
+      <IconButton
+        color="secondary"
+        sx={{
+          zIndex: 100,
+        }}
+        onClick={handleClick}
+      >
+        <ArrowCircleRightIcon style={{ fontSize: 60 }} />
+      </IconButton>
+    </Tooltip>
   );
 };
 

@@ -34,5 +34,7 @@
     "labelRepeatPassword": "Повторите пароль",
     "createAccountLink": "У вас еще нет аккаунта? Создать аккаунт →",
     "navigateToSignInLink": "Уже имеется аккаунт? Войти →"
-  }
+  },
+  "Documentation": "Документация",
+  "ExecuteQuery": "Выполнить запрос"
 }
