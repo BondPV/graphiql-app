@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import App from './App';
-import theme from './theme/theme';
-import './i18n';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { App } from './App';
+import { theme, themeGlobalStyles } from './theme/theme';
+import './i18n/config';
 import { store } from './redux/store';
 import { Provider } from 'react-redux';
-import './firebase';
-import './index.scss';
+import './Api/firebase';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -17,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
+          <GlobalStyles styles={themeGlobalStyles} />
           <App />
         </ThemeProvider>
       </Provider>

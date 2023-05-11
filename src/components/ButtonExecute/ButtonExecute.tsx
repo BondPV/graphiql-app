@@ -1,7 +1,7 @@
 import { IconButton, Tooltip } from '@mui/material';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { requestToGraphQL } from '../../Api/Api';
+import { requestToGraphQL } from '../../Api/requestsApi';
 import { setResponse } from '../../redux/slice/editorResponseSlice';
 import { useTranslation } from 'react-i18next';
 import { IRequestFetch } from '../../types';
