@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { AuthContext } from '../../App/App';
 import { useContext } from 'react';
-import { PATCH } from '../../constants';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Container } from '@mui/material';
+import { AuthContext } from '../../App/App';
+import { PATCH } from '../../constants';
 
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();

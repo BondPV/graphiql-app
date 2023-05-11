@@ -1,6 +1,6 @@
-import { Button, Link } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import { useTranslation } from 'react-i18next';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Button, Link } from '@mui/material';
 
 interface IAuthorLink {
   name: string;

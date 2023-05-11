@@ -1,6 +1,6 @@
 import { Box, Container, Divider } from '@mui/material';
-import { AuthorLink } from '../AuthorLink';
 import logoRS from '../../assets/rs-school-js.svg';
+import { AuthorLink } from '../AuthorLink';
 
 const AUTHORS = [
   { name: 'Pavel', url: 'https://github.com/BondPV' },

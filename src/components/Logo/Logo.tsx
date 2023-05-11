@@ -1,6 +1,6 @@
-import { Stack, Typography } from '@mui/material';
-import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import { useNavigate } from 'react-router-dom';
+import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
+import { Stack, Typography } from '@mui/material';
 
 const Logo = (): JSX.Element => {
   const navigate = useNavigate();
