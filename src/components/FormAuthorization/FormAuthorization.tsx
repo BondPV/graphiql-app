@@ -1,14 +1,8 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ILoginForm } from '../../types';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import {
-  ERROR_CODES_FIREBASE,
-  ERROR_MESSAGE,
-  PATCH,
-  REGEX_EMAIL,
-  REGEX_PASSWORD,
-} from '../../constants';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Alert,
   Avatar,
@@ -19,13 +13,19 @@ import {
   InputAdornment,
   Link,
   Snackbar,
+  styled,
   TextField,
   Typography,
-  styled,
 } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  ERROR_CODES_FIREBASE,
+  ERROR_MESSAGE,
+  PATCH,
+  REGEX_EMAIL,
+  REGEX_PASSWORD,
+} from '../../constants';
+import { ILoginForm } from '../../types';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {

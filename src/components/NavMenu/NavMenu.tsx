@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Box, Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from '@firebase/auth';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Box, Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import { AuthContext } from '../../App/App';
 import { PATCH } from '../../constants';
-import { getAuth, signOut } from '@firebase/auth';
 
 const NavMenu = (): JSX.Element => {
   const [pagesLink, setPagesLink] = useState(['']);

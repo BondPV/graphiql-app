@@ -22,7 +22,7 @@
     "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint", "react", "prettier", "react-hooks"
+    "@typescript-eslint", "react", "prettier", "react-hooks", "simple-import-sort"
   ],
   "rules": {
     "@typescript-eslint/ban-ts-comment": "error",
@@ -41,7 +41,24 @@
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-uses-react": "off",
     "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "simple-import-sort/imports": [
+      "warn",
+      {
+      "groups": [[
+          "^react",
+          "^@?\\w",
+          "^@(/.*|$)",
+          "^\\u0000",
+          "^\\.\\.(?!/?$)",
+          "^\\.\\./?$",
+          "^\\./(?=.*/)(?!/?$)",
+          "^\\.(?!/?$)",
+          "^\\./?$",
+          "^.+\\.?(css)$"
+      ]]
+      }
+    ]
   },
   "settings": {
     "react": {

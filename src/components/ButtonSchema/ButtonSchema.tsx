@@ -1,6 +1,6 @@
+import { useTranslation } from 'react-i18next';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton, Tooltip } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import { requestToGraphQL } from '../../Api/requestsApi';
 import { IRequestFetch } from '../../types';
 
@@ -33,6 +33,8 @@ const ButtonSchema = (): JSX.Element => {
 
   const handleClickGetSchema = async (): Promise<void> => {
     const value = await requestToGraphQL(schemaRequest);
+
+    // TODO value processing
     console.log(value);
   };
 

@@ -1,7 +1,7 @@
 import { AppBar, Box, Container, Stack, useScrollTrigger } from '@mui/material';
-import { NavMenu } from '../NavMenu';
-import { Logo } from '../Logo';
 import { LanguageSwitcher } from '../LanguageSwitcher';
+import { Logo } from '../Logo';
+import { NavMenu } from '../NavMenu';
 
 const Header = (): JSX.Element => {
   const trigger = useScrollTrigger({ threshold: 80, disableHysteresis: true });

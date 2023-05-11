@@ -1,9 +1,9 @@
-import { IconButton, Tooltip } from '@mui/material';
-import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { requestToGraphQL } from '../../Api/requestsApi';
-import { setResponse } from '../../redux/slice/editorResponseSlice';
 import { useTranslation } from 'react-i18next';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import { IconButton, Tooltip } from '@mui/material';
+import { requestToGraphQL } from '../../Api/requestsApi';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setResponse } from '../../redux/slice/editorResponseSlice';
 import { IRequestFetch } from '../../types';
 
 const ButtonExecute = (): JSX.Element => {
