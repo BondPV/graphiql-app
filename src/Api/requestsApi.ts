@@ -1,11 +1,14 @@
+import { IRequestFetch } from '../types';
+
 const API_URL = 'https://countries.trevorblades.com/';
 
-const responseToGraphQL = async (query: string, variables: {} = {}): Promise<string> => {
+const requestToGraphQL = async ({ query, variables, headers }: IRequestFetch): Promise<string> => {
   try {
     const response = await fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...headers,
       },
       body: JSON.stringify({ query, variables }),
     });
@@ -20,4 +23,4 @@ const responseToGraphQL = async (query: string, variables: {} = {}): Promise<str
   }
 };
 
-export { responseToGraphQL };
+export { requestToGraphQL };

@@ -38,4 +38,18 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+const themeGlobalStyles = {
+  '*': {
+    '&::-webkit-scrollbar': {
+      width: '5px',
+    },
+    '&::webkit-scrollbar-track': {
+      background: '#DADEEA',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: '#929fc1',
+    },
+  },
+};
+
+export { theme, themeGlobalStyles };

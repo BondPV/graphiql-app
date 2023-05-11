@@ -9,7 +9,7 @@ interface ILang {
   icon: string;
 }
 
-const langs: ILang[] = [
+const LANGS: ILang[] = [
   {
     value: 'en',
     label: 'English',
@@ -22,10 +22,10 @@ const langs: ILang[] = [
   },
 ];
 
-const langIconDefault = '/assets/icons/lang.svg';
+const LANG_ICON_DEFAULT = '/assets/icons/lang.svg';
 
 const LanguageSwitcher = (): JSX.Element => {
-  const [icon, setIcon] = useState(langIconDefault);
+  const [icon, setIcon] = useState(LANG_ICON_DEFAULT);
   const [open, setOpen] = useState<HTMLElement | null>(null);
   const { t, i18n } = useTranslation();
 
@@ -80,7 +80,7 @@ const LanguageSwitcher = (): JSX.Element => {
         }}
       >
         <Stack spacing={0.75}>
-          {langs.map((elem) => (
+          {LANGS.map((elem) => (
             <MenuItem key={elem.value} onClick={(): void => changeLanguage(elem)}>
               <Box component="img" alt={elem.label} src={elem.icon} sx={{ width: 28, mr: 2 }} />
               {`${t(elem.label)}`}

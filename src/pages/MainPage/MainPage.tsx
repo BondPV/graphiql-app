@@ -2,6 +2,7 @@ import { CodeEditor } from '../../components/CodeEditor';
 import { Box, Container, Paper, Stack } from '@mui/material';
 import { ButtonExecute } from '../../components/ButtonExecute';
 import { ResponseViewer } from '../../components/ResponseViewer';
+import { ButtonSchema } from '../../components/ButtonSchema';
 
 const MainPage = (): JSX.Element => {
   return (
@@ -39,9 +40,10 @@ const MainPage = (): JSX.Element => {
             >
               <CodeEditor />
             </Box>
-            <Box>
+            <Stack gap={2} alignItems={'center'}>
               <ButtonExecute />
-            </Box>
+              <ButtonSchema />
+            </Stack>
           </Paper>
           <Box
             sx={{

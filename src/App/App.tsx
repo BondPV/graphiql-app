@@ -1,10 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './Layout';
-import { MainPage, NotFoundPage, WelcomePage, SignUpPage, SignInPage } from './pages';
+import { Layout } from '../components/Layout';
+import { MainPage, NotFoundPage, WelcomePage, SignUpPage, SignInPage } from '../pages';
 import { useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged, signOut } from '@firebase/auth';
 import { createContext } from 'react';
-import { PATCH } from './constants';
+import { PATCH } from '../constants';
 
 export const AuthContext = createContext(false);
 
@@ -56,4 +56,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
+export { App };

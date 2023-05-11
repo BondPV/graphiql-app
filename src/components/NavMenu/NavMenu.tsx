@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Box, Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AuthContext } from '../../App';
+import { AuthContext } from '../../App/App';
 import { PATCH } from '../../constants';
 import { getAuth, signOut } from '@firebase/auth';
 
@@ -38,19 +38,15 @@ const NavMenu = (): JSX.Element => {
       case 'SignIn':
         navigate(PATCH.signInPage);
         break;
-
       case 'SignUp':
         navigate(PATCH.signUpPage);
         break;
-
       case 'Logout':
         handleLogout();
         break;
-
       case 'Main':
         navigate(PATCH.mainPage);
         break;
-
       default:
         break;
     }

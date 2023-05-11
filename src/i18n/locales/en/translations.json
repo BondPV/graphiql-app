@@ -34,5 +34,7 @@
     "labelRepeatPassword": "Repeat password",
     "createAccountLink": "Don`t have an account? Create an account →",
     "navigateToSignInLink": "Already have an account? Sign in →"
-  }
+  },
+  "Documentation": "Documentation",
+  "ExecuteQuery": "Execute Query"
 }

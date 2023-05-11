@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { AuthContext } from '../../App';
+import { AuthContext } from '../../App/App';
 import { useContext } from 'react';
 import { PATCH } from '../../constants';
 import { Container } from '@mui/material';
