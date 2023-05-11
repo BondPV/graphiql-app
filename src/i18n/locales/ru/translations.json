@@ -29,7 +29,7 @@
   "formAuthorization": {
     "signIn": "Войти",
     "signUp": "Регистрация",
-    "labelEmail": "Электронаая почта",
+    "labelEmail": "Электронная почта",
     "labelPassword": "Пароль",
     "labelRepeatPassword": "Повторите пароль",
     "createAccountLink": "У вас еще нет аккаунта? Создать аккаунт →",
