@@ -1,8 +1,3 @@
-// example
-interface IExample {
-  id: number;
-}
-
 interface ILoginForm {
   email: string;
   password: string;
@@ -13,10 +8,16 @@ interface IConstantTranslationFunc {
   [key: string]: string;
 }
 
-interface IEditorRequest {
+interface IEditorData {
   query: string;
   variables: string;
   headers: string;
 }
 
-export type { ILoginForm, IExample, IConstantTranslationFunc, IEditorRequest };
+interface IRequestFetch {
+  query: string;
+  variables: object;
+  headers: object;
+}
+
+export type { ILoginForm, IConstantTranslationFunc, IEditorData, IRequestFetch };

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IEditorRequest } from '../../types';
+import { IEditorData } from '../../types';
 
 const defaultQuery = `query GetCountry($code: ID!) {
   country(code: $code) {
@@ -22,7 +22,7 @@ const defaultVariables = `{
   "code": "BY"
 }`;
 
-const initialState: IEditorRequest = {
+const initialState: IEditorData = {
   query: defaultQuery,
   variables: defaultVariables,
   headers: '',

@@ -1,9 +1,10 @@
 import { IconButton, Tooltip } from '@mui/material';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { responseToGraphQL } from '../../Api/Api';
+import { requestToGraphQL } from '../../Api/Api';
 import { setResponse } from '../../redux/slice/editorResponseSlice';
 import { useTranslation } from 'react-i18next';
+import { IRequestFetch } from '../../types';
 
 const ButtonExecute = (): JSX.Element => {
   const { t } = useTranslation();
@@ -11,7 +12,13 @@ const ButtonExecute = (): JSX.Element => {
   const editorRequest = useAppSelector((state) => state.editorRequest);
 
   const handleClick = async (): Promise<void> => {
-    const value = await responseToGraphQL(editorRequest);
+    const request: IRequestFetch = {
+      query: editorRequest.query,
+      variables: editorRequest.variables ? JSON.parse(editorRequest.variables) : {},
+      headers: editorRequest.headers ? JSON.parse(editorRequest.headers) : {},
+    };
+
+    const value = await requestToGraphQL(request);
     dispatch(setResponse(value));
   };
 

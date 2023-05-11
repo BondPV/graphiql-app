@@ -1,12 +1,13 @@
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton, Tooltip } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { responseToGraphQL } from '../../Api';
+import { requestToGraphQL } from '../../Api';
+import { IRequestFetch } from '../../types';
 
 const ButtonSchema = (): JSX.Element => {
   const { t } = useTranslation();
 
-  const schemaRequest = `query {
+  const schemaQuery = `query {
     __schema {
       types {
         name
@@ -24,8 +25,14 @@ const ButtonSchema = (): JSX.Element => {
     }
   }`;
 
+  const schemaRequest: IRequestFetch = {
+    query: schemaQuery,
+    variables: {},
+    headers: {},
+  };
+
   const handleClickGetSchema = async (): Promise<void> => {
-    const value = await responseToGraphQL(schemaRequest);
+    const value = await requestToGraphQL(schemaRequest);
     console.log(value);
   };
 
