@@ -33,6 +33,8 @@ const ButtonSchema = (): JSX.Element => {
 
   const handleClickGetSchema = async (): Promise<void> => {
     const value = await requestToGraphQL(schemaRequest);
+
+    // TODO value processing
     console.log(value);
   };
 
