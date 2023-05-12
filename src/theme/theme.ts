@@ -1,7 +1,7 @@
 import { red } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     background: {
       default: '#DADEEA',
@@ -36,20 +36,26 @@ const theme = createTheme({
     fontWeightMedium: 500,
     fontWeightBold: 700,
   },
-});
-
-const themeGlobalStyles = {
-  '*': {
-    '&::-webkit-scrollbar': {
-      width: '5px',
-    },
-    '&::webkit-scrollbar-track': {
-      background: '#DADEEA',
-    },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: '#929fc1',
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        '*': {
+          '&::-webkit-scrollbar': {
+            height: '5px',
+            width: '5px',
+          },
+          '&::webkit-scrollbar-track': {
+            background: '#DADEEA',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: '#929fc1',
+          },
+        },
+      },
     },
   },
-};
+});
 
-export { theme, themeGlobalStyles };
+theme = responsiveFontSizes(theme);
+
+export { theme };

@@ -6,20 +6,22 @@ import { ResponseViewer } from '../../components/ResponseViewer';
 
 const MainPage = (): JSX.Element => {
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{ paddingLeft: { xs: 0, sm: 3 }, paddingRight: { xs: 0, sm: 3 } }}>
       <Box
         sx={{
+          height: { xs: 'auto', md: 'calc(100vh - 190px)' },
           mt: 2,
           p: 1,
           backgroundColor: '#FFFFFF',
-          borderRadius: '20px',
+          borderRadius: { xs: 0, sm: '20px' },
         }}
       >
         <Stack
-          direction="row"
-          spacing={2}
+          gap={2}
+          height={'100%'}
+          direction={{ xs: 'column', md: 'row' }}
           sx={{
-            p: 1,
+            p: { xs: 0.5, sm: 1 },
             borderRadius: '20px',
           }}
         >
@@ -27,27 +29,28 @@ const MainPage = (): JSX.Element => {
             elevation={4}
             sx={{
               display: 'flex',
-              p: 2,
-              width: '50%',
-              borderRadius: '20px',
+              p: { xs: 1, md: 2 },
+              flex: '1 1 50%',
+              borderRadius: { xs: 0, sm: '20px', md: 2 },
+              flexDirection: { xs: 'column', sm: 'row' },
             }}
           >
-            <Box
-              sx={{
-                flexGrow: '1',
-                mr: 1,
-              }}
-            >
+            <Box mr={1} width={'100%'}>
               <CodeEditor />
             </Box>
-            <Stack gap={2} alignItems={'center'}>
+            <Stack
+              gap={2}
+              alignItems={'center'}
+              justifyContent={{ xs: 'center', sm: 'flex-start' }}
+              direction={{ xs: 'row', sm: 'column' }}
+            >
               <ButtonExecute />
               <ButtonSchema />
             </Stack>
           </Paper>
           <Box
             sx={{
-              width: '50%',
+              flex: '1 1 50%',
             }}
           >
             <ResponseViewer />
