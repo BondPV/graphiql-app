@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton, Tooltip } from '@mui/material';
-import { requestToGraphQL } from '../../Api/requestsApi';
-import { IRequestFetch } from '../../types';
+import { requestToGraphQL } from '@/Api/requestsApi';
+import { IRequestFetch } from '@/types';
 
 const ButtonSchema = (): JSX.Element => {
   const { t } = useTranslation();

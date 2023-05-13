@@ -17,15 +17,20 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  AuthError,
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import {
   ERROR_CODES_FIREBASE,
   ERROR_MESSAGE,
-  PATCH,
   REGEX_EMAIL,
   REGEX_PASSWORD,
-} from '../../constants';
-import { ILoginForm } from '../../types';
+  ROUTE,
+} from '@/constants';
+import { ILoginForm } from '@/types';
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
@@ -71,46 +76,47 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
     },
   });
 
-  const handleRegister = (email: string, password: string): void => {
-    const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        navigate('/main');
-      })
-      .catch((error) => {
-        if (error.code === ERROR_CODES_FIREBASE.emailAlreadyInUse) {
-          setError(ERROR_MESSAGE(t).emailAlreadyInUse);
-        } else {
-          setError(ERROR_MESSAGE(t).unknownError);
-        }
-        setOpen(true);
-      });
+  const handleRegister = async (email: string, password: string): Promise<void> => {
+    try {
+      const auth = getAuth();
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate('/main');
+    } catch (error) {
+      const { code } = error as AuthError;
+      if (code === ERROR_CODES_FIREBASE.emailAlreadyInUse) {
+        setError(ERROR_MESSAGE(t).emailAlreadyInUse);
+      } else {
+        setError(ERROR_MESSAGE(t).unknownError);
+      }
+      setOpen(true);
+    }
   };
 
-  const handleLogin = (email: string, password: string): void => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        navigate(PATCH.mainPage);
-      })
-      .catch((error) => {
-        switch (error.code) {
-          case ERROR_CODES_FIREBASE.wrongPassword:
-            setError(ERROR_MESSAGE(t).wrongPassword);
-            break;
-          case ERROR_CODES_FIREBASE.userNotFound:
-            setError(ERROR_MESSAGE(t).userNotFound);
-            break;
-          case ERROR_CODES_FIREBASE.invalidEmailFirebase:
-            setError(ERROR_MESSAGE(t).invalidEmailFirebase);
-            break;
-          default:
-            setError(ERROR_MESSAGE(t).unknownError);
-            break;
-        }
+  const handleLogin = async (email: string, password: string): Promise<void> => {
+    try {
+      const auth = getAuth();
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate(ROUTE.mainPage);
+    } catch (error) {
+      const { code } = error as AuthError;
 
-        setOpen(true);
-      });
+      switch (code) {
+        case ERROR_CODES_FIREBASE.wrongPassword:
+          setError(ERROR_MESSAGE(t).wrongPassword);
+          break;
+        case ERROR_CODES_FIREBASE.userNotFound:
+          setError(ERROR_MESSAGE(t).userNotFound);
+          break;
+        case ERROR_CODES_FIREBASE.invalidEmailFirebase:
+          setError(ERROR_MESSAGE(t).invalidEmailFirebase);
+          break;
+        default:
+          setError(ERROR_MESSAGE(t).unknownError);
+          break;
+      }
+
+      setOpen(true);
+    }
   };
 
   const onSubmitForm = (data: ILoginForm): void => {
@@ -124,11 +130,11 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
   };
 
   const redirectToSignInPage = (): void => {
-    navigate(PATCH.signInPage);
+    navigate(ROUTE.signInPage);
   };
 
   const redirectToSignUpPage = (): void => {
-    navigate(PATCH.signUpPage);
+    navigate(ROUTE.signUpPage);
   };
 
   const handleClickShowPassword = (): void => setShowPassword(!showPassword);
@@ -148,7 +154,7 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
         height: '70vh',
       }}
     >
-      <Avatar src="/broken-image.jpg" sx={{ bgcolor: 'primary.dark' }} />
+      <Avatar sx={{ bgcolor: 'primary.dark' }} />
       <Typography component="h2" variant="h5" align="center" sx={{ color: 'primary.dark' }}>
         {registration ? t('formAuthorization.signUp') : t('formAuthorization.signIn')}
       </Typography>

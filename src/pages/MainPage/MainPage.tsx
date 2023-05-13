@@ -1,8 +1,8 @@
 import { Box, Container, Paper, Stack } from '@mui/material';
-import { ButtonExecute } from '../../components/ButtonExecute';
-import { ButtonSchema } from '../../components/ButtonSchema';
-import { CodeEditor } from '../../components/CodeEditor';
-import { ResponseViewer } from '../../components/ResponseViewer';
+import { ButtonExecute } from '@/components/ButtonExecute';
+import { ButtonSchema } from '@/components/ButtonSchema';
+import { CodeEditor } from '@/components/CodeEditor';
+import { ResponseViewer } from '@/components/ResponseViewer';
 
 const MainPage = (): JSX.Element => {
   return (

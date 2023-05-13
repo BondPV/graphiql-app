@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { createContext } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { getAuth, onAuthStateChanged, signOut } from '@firebase/auth';
-import { Layout } from '../components/Layout';
-import { PATCH } from '../constants';
-import { MainPage, NotFoundPage, SignInPage, SignUpPage, WelcomePage } from '../pages';
+import { Layout } from '@/components/Layout';
+import { ROUTE } from '@/constants';
+import { MainPage, NotFoundPage, SignInPage, SignUpPage, WelcomePage } from '@/pages';
 
 export const AuthContext = createContext(false);
 
@@ -35,21 +35,21 @@ const App = (): JSX.Element => {
   return (
     <AuthContext.Provider value={userIsAuth}>
       <Routes>
-        <Route path={PATCH.welcomePage} element={<Layout />}>
+        <Route path={ROUTE.welcomePage} element={<Layout />}>
           <Route index element={<WelcomePage />} />
           <Route
-            path={PATCH.signInPage}
-            element={!userIsAuth ? <SignInPage /> : <Navigate to={PATCH.mainPage} />}
+            path={ROUTE.signInPage}
+            element={!userIsAuth ? <SignInPage /> : <Navigate to={ROUTE.mainPage} />}
           />
           <Route
-            path={PATCH.signUpPage}
-            element={!userIsAuth ? <SignUpPage /> : <Navigate to={PATCH.mainPage} />}
+            path={ROUTE.signUpPage}
+            element={!userIsAuth ? <SignUpPage /> : <Navigate to={ROUTE.mainPage} />}
           />
           <Route
-            path={PATCH.mainPage}
-            element={userIsAuth ? <MainPage /> : <Navigate to={PATCH.welcomePage} />}
+            path={ROUTE.mainPage}
+            element={userIsAuth ? <MainPage /> : <Navigate to={ROUTE.welcomePage} />}
           />
-          <Route path={PATCH.errorPage} element={<NotFoundPage />} />
+          <Route path={ROUTE.errorPage} element={<NotFoundPage />} />
         </Route>
       </Routes>
     </AuthContext.Provider>

@@ -1,5 +1,5 @@
 import { Box, Container, Divider } from '@mui/material';
-import logoRS from '../../assets/rs-school-js.svg';
+import logoRS from '@/assets/rs-school-js.svg';
 import { AuthorLink } from '../AuthorLink';
 
 const AUTHORS = [
