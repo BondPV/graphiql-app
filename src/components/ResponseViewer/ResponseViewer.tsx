@@ -1,8 +1,8 @@
 import JsonView from 'react18-json-view';
 import { Box } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { useAppSelector } from '../../hooks/redux';
-import '../../theme/styleViewer.css';
+import { useAppSelector } from '@/hooks/redux';
+import '@/theme/styleViewer.css';
 
 const ResponseViewer = (): JSX.Element => {
   const editorResponse = useAppSelector((state) => state.editorResponse);

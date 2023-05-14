@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Container } from '@mui/material';
-import { AuthContext } from '../../App/App';
-import { PATCH } from '../../constants';
+import { AuthContext } from '@/App/App';
+import { ROUTE } from '@/constants';
 
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -12,9 +12,9 @@ const WelcomePage = (): JSX.Element => {
 
   const redirect = (): void => {
     if (isAuth) {
-      navigate(PATCH.mainPage);
+      navigate(ROUTE.mainPage);
     } else {
-      navigate(PATCH.signInPage);
+      navigate(ROUTE.signInPage);
     }
   };
 

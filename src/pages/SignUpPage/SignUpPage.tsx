@@ -1,4 +1,4 @@
-import { FormAuthorization } from '../../components/FormAuthorization';
+import { FormAuthorization } from '@/components/FormAuthorization';
 
 const SignUpPage = (): JSX.Element => {
   return <FormAuthorization registration={true} />;
