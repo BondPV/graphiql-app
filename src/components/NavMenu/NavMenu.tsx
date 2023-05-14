@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signOut } from '@firebase/auth';
+import { signOut } from '@firebase/auth';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   Alert,
   Box,
   Button,
+  Container,
   IconButton,
   Menu,
   MenuItem,
@@ -17,7 +18,7 @@ import {
 import { auth } from '@/Api/firebase';
 import { ERROR_MESSAGE, ROUTE } from '@/constants';
 
-const NavMenu = (): JSX.Element | undefined => {
+const NavMenu = (): JSX.Element => {
   const [pagesLink, setPagesLink] = useState(['']);
   const [error, setError] = useState('');
   const [open, setOpen] = useState(false);
@@ -75,6 +76,7 @@ const NavMenu = (): JSX.Element | undefined => {
 
   useEffect(() => {
     if (loading) return;
+
     if (user) {
       setPagesLink(['Main', 'Logout']);
     } else {
@@ -83,7 +85,7 @@ const NavMenu = (): JSX.Element | undefined => {
   }, [user, loading]);
 
   if (loading) {
-    return;
+    return <Container></Container>;
   }
 
   return (
