@@ -59,7 +59,7 @@ const CodeEditor = (): JSX.Element => {
   };
 
   return (
-    <Stack direction={'column'} sx={{ height: { xs: 'auto', md: '75vh' } }}>
+    <Stack direction={'column'} height={'100%'} sx={{ maxHeight: { xs: '50vh', md: '100%' } }}>
       <Box aria-label="query" height="100%" overflow={'auto'}>
         <CodeMirror
           value={editorRequest.query}
