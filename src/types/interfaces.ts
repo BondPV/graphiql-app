@@ -55,7 +55,8 @@ interface ISchemaArgs {
 interface ISchemaOfType {
   name: string;
   kind: string;
-  ofType: ISchemaOfType;
+  description: string;
+  ofType?: ISchemaOfType;
 }
 
 export type {

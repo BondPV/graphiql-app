@@ -5,27 +5,23 @@ interface ITypeDetails {
 }
 
 const TypeDetails = ({ type }: ITypeDetails): JSX.Element => {
-  if (type.kind === 'OBJECT') {
-    return <>{type.name}</>;
-  }
-
-  if (type.kind === 'SCALAR') {
-    return <>{type.name}</>;
-  }
-
-  if (type.kind === 'NON_NULL') {
-    if (type.ofType?.kind === 'SCALAR') {
-      return <>{type.ofType?.name}!</>;
+  const getTypeDetails = (type: ISchemaType): string => {
+    if (type.kind === 'OBJECT' || type.kind === 'SCALAR') {
+      return type.name;
     }
 
-    if (type.ofType?.kind === 'OBJECT') {
-      return <>{type.ofType?.name}</>;
+    if (type.kind === 'NON_NULL') {
+      return `${getTypeDetails(type.ofType!)}!`;
     }
 
-    return <>[{type.ofType?.ofType?.ofType?.name}]!</>;
-  }
+    if (type.kind === 'LIST') {
+      return `[${getTypeDetails(type.ofType!)}]`;
+    }
 
-  return <>Empty</>;
+    return '';
+  };
+
+  return <>{getTypeDetails(type)}</>;
 };
 
 export { TypeDetails };
