@@ -15,6 +15,7 @@ const MainPage = (): JSX.Element => {
   return (
     <Container maxWidth="xl" sx={{ paddingLeft: { xs: 0, sm: 3 }, paddingRight: { xs: 0, sm: 3 } }}>
       <Box
+        position={'relative'}
         sx={{
           height: { xs: 'auto', md: 'calc(100vh - 190px)' },
           mt: 2,
@@ -23,6 +24,9 @@ const MainPage = (): JSX.Element => {
           borderRadius: { xs: 0, sm: '20px' },
         }}
       >
+        <Drawer openDrawer={isDrawerOpen} toggleDrawer={toggleDrawer}>
+          {<DocumentationExplorer />}
+        </Drawer>
         <Stack
           gap={2}
           height={'100%'}
@@ -56,15 +60,11 @@ const MainPage = (): JSX.Element => {
             </Stack>
           </Paper>
           <Box
-            position={'relative'}
             sx={{
               flex: '1 1 50%',
             }}
           >
             <ResponseViewer />
-            <Drawer openDrawer={isDrawerOpen} toggleDrawer={toggleDrawer}>
-              {<DocumentationExplorer />}
-            </Drawer>
           </Box>
         </Stack>
       </Box>

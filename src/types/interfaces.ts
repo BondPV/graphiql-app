@@ -20,4 +20,52 @@ interface IRequestFetch {
   headers: object;
 }
 
-export type { ILoginForm, IConstantTranslationFunc, IEditorData, IRequestFetch };
+interface IDocumentationSchema {
+  data: ISchema;
+}
+
+interface ISchema {
+  __schema: {
+    types: ISchemaType[];
+  };
+}
+
+interface ISchemaType {
+  name: string;
+  kind: string;
+  description: string;
+  fields?: ISchemaTypeField[];
+}
+
+interface ISchemaTypeField {
+  name: string;
+  description: string;
+  args?: ISchemaTypeFieldArg[];
+  type: {
+    name: string;
+    kind: string;
+  };
+}
+
+interface ISchemaTypeFieldArg {
+  name: string;
+  description: string;
+  defaultValue: string;
+  type: {
+    name: string;
+    kind: string;
+    ofType: {
+      name: string;
+      kind: string;
+    };
+  };
+}
+
+export type {
+  ILoginForm,
+  IConstantTranslationFunc,
+  IEditorData,
+  IRequestFetch,
+  IDocumentationSchema,
+  ISchemaType,
+};
