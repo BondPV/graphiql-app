@@ -34,31 +34,28 @@ interface ISchemaType {
   name: string;
   kind: string;
   description: string;
-  fields?: ISchemaTypeField[];
+  fields?: ISchemaField[];
+  ofType?: ISchemaOfType;
 }
 
-interface ISchemaTypeField {
+interface ISchemaField {
   name: string;
   description: string;
-  args?: ISchemaTypeFieldArg[];
-  type: {
-    name: string;
-    kind: string;
-  };
+  type: ISchemaType;
+  args?: ISchemaArgs[];
 }
 
-interface ISchemaTypeFieldArg {
+interface ISchemaArgs {
   name: string;
   description: string;
   defaultValue: string;
-  type: {
-    name: string;
-    kind: string;
-    ofType: {
-      name: string;
-      kind: string;
-    };
-  };
+  type: ISchemaOfType;
+}
+
+interface ISchemaOfType {
+  name: string;
+  kind: string;
+  ofType: ISchemaOfType;
 }
 
 export type {
@@ -68,4 +65,6 @@ export type {
   IRequestFetch,
   IDocumentationSchema,
   ISchemaType,
+  ISchemaArgs,
+  ISchemaOfType,
 };

@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { requestToGraphQL } from '../../Api/requestsApi';
 import { INTROSPECTION_QUERY } from '../../constants';
 import { IDocumentationSchema, IRequestFetch, ISchemaType } from '../../types';
-import { QueryTypesList } from './QueryTypesList';
+import { TypesList } from './TypesList';
 
 const DocumentationExplorer = (): JSX.Element => {
   const [schema, setSchema] = useState<null | IDocumentationSchema>(null);
@@ -30,13 +30,15 @@ const DocumentationExplorer = (): JSX.Element => {
     return <Box>Loading...</Box>;
   }
 
+  console.log(schema);
+
   const queryTypes: ISchemaType[] = schema.data?.__schema.types.filter(
     (type) => type.kind === 'OBJECT' && type.name.endsWith('Query')
   );
 
   return (
     <Box>
-      <QueryTypesList types={queryTypes} />
+      <TypesList types={queryTypes} />
     </Box>
   );
 };
