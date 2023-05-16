@@ -6,8 +6,8 @@
   },
   "pages": {
     "Main": "Playground",
-    "SignIn": "SignIn",
-    "SignUp": "SignUp",
+    "SignIn": "Sign In",
+    "SignUp": "Sign Up",
     "Logout": "Logout"
   },
   "English": "English",
