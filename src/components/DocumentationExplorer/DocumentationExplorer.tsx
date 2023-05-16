@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { Box, Divider, Stack, Typography } from '@mui/material';
 import { requestToGraphQL } from '../../Api/requestsApi';
@@ -14,6 +15,7 @@ const DocumentationExplorer = (): JSX.Element => {
   const queryType = useAppSelector((state) => state.schemaQueryType).value;
   const previousQueryType = useAppSelector((state) => state.schemaQueryType).previousValue;
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const schemaRequest: IRequestFetch = {
@@ -34,7 +36,7 @@ const DocumentationExplorer = (): JSX.Element => {
   }, []);
 
   if (!schema) {
-    return <Box>Loading...</Box>;
+    return <Box>{t('Loading')}</Box>;
   }
 
   const queryTypes: ISchemaType[] = schema.data?.__schema.types.filter((type) =>
@@ -46,7 +48,7 @@ const DocumentationExplorer = (): JSX.Element => {
   };
 
   let title: React.ReactNode = (
-    <>
+    <Box>
       <Stack direction={'row'} alignItems={'center'}>
         <ArrowLeftIcon />
         <Typography
@@ -64,18 +66,32 @@ const DocumentationExplorer = (): JSX.Element => {
         </Typography>
       </Stack>
       <Divider sx={{ width: '70%' }} />
-    </>
+    </Box>
   );
+
+  let docs: React.ReactNode = null;
 
   if (queryType === DOC_INITIAL_VALUE) {
     title = null;
+
+    docs = (
+      <Box>
+        <Typography component="h2" variant="h6" mt={1}>
+          {t('Documentation')}
+        </Typography>
+        <Typography component="p" variant="body2" mt={1}>
+          {t('DocsDescription')}
+        </Typography>
+      </Box>
+    );
   }
 
   return (
     <Box>
+      {docs}
+      {title}
       {queryTypes.map((type) => (
-        <Box key={type.name} style={{ fontSize: '16px' }}>
-          {title}
+        <Box key={type.name} sx={{ fontSize: '1rem' }}>
           <Typography component="h3" variant="h6" mt={1}>
             {type.name}
           </Typography>

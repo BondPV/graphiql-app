@@ -12,7 +12,7 @@ const Drawer = ({ children, openDrawer, toggleDrawer }: IDrawerProps): JSX.Eleme
     <>
       {openDrawer && (
         <Box>
-          <Box position={'absolute'} top={5} right={5} zIndex={1500}>
+          <Box position={'absolute'} top={5} right={5} zIndex={1300}>
             <IconButton aria-label="close" onClick={toggleDrawer}>
               <Close />
             </IconButton>
@@ -29,7 +29,7 @@ const Drawer = ({ children, openDrawer, toggleDrawer }: IDrawerProps): JSX.Eleme
             bgcolor={'primary.light'}
             borderLeft={3}
             borderColor={'primary.main'}
-            zIndex={1400}
+            zIndex={1200}
           >
             {children}
           </Box>

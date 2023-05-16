@@ -19,7 +19,7 @@ const CssTabList = styled(TabList)({
 
 const CodeEditor = (): JSX.Element => {
   const [tab, setTab] = useState('variables');
-  const [showTabContent, setShowTabContent] = useState(true);
+  const [showTabContent, setShowTabContent] = useState(false);
   const editorRequest = useAppSelector((state) => state.editorRequest);
   const dispatch = useAppDispatch();
 
