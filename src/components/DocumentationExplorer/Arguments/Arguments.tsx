@@ -1,3 +1,4 @@
+import { COLORS } from '../../../constants/colors';
 import { ISchemaArgs } from '../../../types';
 import { ReturnType } from '../ReturnType';
 
@@ -15,11 +16,9 @@ const Arguments = ({ args }: IFieldsArgs): JSX.Element => {
               <span>
                 {index === 0 ? `(` : ''}
                 {index > 0 ? ',' : ''}
-                <span style={{ color: 'red' }}> {arg.name}</span>
-                <span style={{ color: 'green' }}>
-                  {`: `}
-                  <ReturnType type={arg.type} />
-                </span>
+                <span style={{ color: COLORS.doc.arguments }}> {arg.name}</span>
+                {`: `}
+                <ReturnType type={arg.type} />
                 {arg.defaultValue ? `=${arg.defaultValue}` : ''}
               </span>
               <span>{arg.description}</span>

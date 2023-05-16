@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-const initialValue = 'Query';
+import { DOC_INITIAL_VALUE } from '../../constants';
 
 const initialState = {
-  value: initialValue,
-  previousValue: initialValue,
-  valueList: [initialValue],
+  value: DOC_INITIAL_VALUE,
+  previousValue: DOC_INITIAL_VALUE,
+  valueList: [DOC_INITIAL_VALUE],
 };
 
 const schemaQuery = createSlice({
@@ -14,13 +13,13 @@ const schemaQuery = createSlice({
   reducers: {
     setSchemaQuery: (state, action: PayloadAction<string>) => {
       state.valueList.push(state.value);
-      state.previousValue = state.valueList.at(-1) ?? initialValue;
+      state.previousValue = state.valueList.at(-1) ?? DOC_INITIAL_VALUE;
       state.value = action.payload;
     },
     setSchemaPreviousQuery: (state) => {
       state.value = state.previousValue;
       state.valueList.pop();
-      state.previousValue = state.valueList.at(-1) ?? initialValue;
+      state.previousValue = state.valueList.at(-1) ?? DOC_INITIAL_VALUE;
     },
   },
 });

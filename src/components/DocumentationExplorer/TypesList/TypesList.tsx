@@ -1,4 +1,6 @@
-import { Box } from '@mui/material';
+import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
+import { Box, Stack, Typography } from '@mui/material';
+import { COLORS } from '../../../constants/colors';
 import { ISchemaType } from '../../../types';
 import { Arguments } from '../Arguments';
 import { ReturnType } from '../ReturnType';
@@ -14,15 +16,18 @@ const TypesList = ({ type }: ITypesList): JSX.Element => {
     <Box>
       {typeFields && (
         <div>
-          <h3>Fields:</h3>
+          <Stack direction={'row'} marginBottom={1} alignItems={'center'}>
+            <PlaylistPlayIcon fontSize={'small'} />
+            <Typography variant="body2" component="h3">
+              Fields:
+            </Typography>
+          </Stack>
           {typeFields?.map((field) => (
-            <div key={field.name} style={{ marginBottom: '1rem' }}>
-              <span style={{ color: 'blue' }}>{field.name}</span>
+            <div key={field.name} style={{ marginBottom: '0.8rem' }}>
+              <span style={{ color: COLORS.doc.fieldName }}>{field.name}</span>
               {field.args && <Arguments args={field.args} />}
               {`: `}
-              <span aria-label="returnsType" style={{ color: 'orange' }}>
-                <ReturnType type={field.type} />
-              </span>
+              <ReturnType type={field.type} />
             </div>
           ))}
         </div>

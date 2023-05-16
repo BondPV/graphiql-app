@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import { Box, Divider, Stack, Typography } from '@mui/material';
 import { requestToGraphQL } from '../../Api/requestsApi';
-import { INTROSPECTION_QUERY } from '../../constants';
+import { DOC_INITIAL_VALUE, INTROSPECTION_QUERY } from '../../constants';
+import { COLORS } from '../../constants/colors';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setSchemaPreviousQuery } from '../../redux/slice';
 import { IDocumentationSchema, IRequestFetch, ISchemaType } from '../../types';
@@ -43,15 +45,45 @@ const DocumentationExplorer = (): JSX.Element => {
     dispatch(setSchemaPreviousQuery());
   };
 
+  let title: React.ReactNode = (
+    <>
+      <Stack direction={'row'} alignItems={'center'}>
+        <ArrowLeftIcon />
+        <Typography
+          component="span"
+          variant="body2"
+          onClick={handleClick}
+          sx={{
+            cursor: 'pointer',
+            '&:hover': {
+              color: COLORS.doc.fieldName,
+            },
+          }}
+        >
+          {previousQueryType}
+        </Typography>
+      </Stack>
+      <Divider sx={{ width: '70%' }} />
+    </>
+  );
+
+  if (queryType === DOC_INITIAL_VALUE) {
+    title = null;
+  }
+
   return (
     <Box>
       {queryTypes.map((type) => (
-        <div key={type.name} style={{ fontSize: '16px' }}>
-          <p onClick={handleClick}>{previousQueryType}</p>
-          <h2>{type.name}</h2>
-          <p>{type.description}</p>
+        <Box key={type.name} style={{ fontSize: '16px' }}>
+          {title}
+          <Typography component="h3" variant="h6" mt={1}>
+            {type.name}
+          </Typography>
+          <Typography component="p" variant="body2" mt={1}>
+            {type.description}
+          </Typography>
           <TypesList type={type} />
-        </div>
+        </Box>
       ))}
     </Box>
   );

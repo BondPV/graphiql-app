@@ -34,4 +34,13 @@ const ERROR_CODES_FIREBASE = {
   invalidEmailFirebase: 'auth/invalid-email',
 };
 
-export { REGEX_EMAIL, REGEX_PASSWORD, PATCH, ERROR_MESSAGE, ERROR_CODES_FIREBASE };
+const DOC_INITIAL_VALUE = 'Query';
+
+export {
+  REGEX_EMAIL,
+  REGEX_PASSWORD,
+  PATCH,
+  ERROR_MESSAGE,
+  ERROR_CODES_FIREBASE,
+  DOC_INITIAL_VALUE,
+};

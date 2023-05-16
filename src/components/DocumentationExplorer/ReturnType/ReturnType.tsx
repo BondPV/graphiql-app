@@ -1,3 +1,5 @@
+import { Typography } from '@mui/material';
+import { COLORS } from '../../../constants/colors';
 import { useAppDispatch } from '../../../hooks/redux';
 import { setSchemaQuery } from '../../../redux/slice';
 import { ISchemaOfType } from '../../../types';
@@ -33,15 +35,23 @@ const ReturnType = ({ type }: IReturnType): JSX.Element => {
   };
 
   return (
-    <span
+    <Typography
+      variant="body2"
+      component="span"
       aria-label="returnsType"
-      style={{ color: 'orange' }}
+      sx={{
+        color: COLORS.doc.returnType,
+        cursor: 'pointer',
+        '&:hover': {
+          textDecoration: 'underline',
+        },
+      }}
       onClick={(): void => {
         handleClick(typeValue);
       }}
     >
       {getReturnsType(type)}
-    </span>
+    </Typography>
   );
 };
 
