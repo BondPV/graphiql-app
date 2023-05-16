@@ -10,7 +10,7 @@ export const COLORS = {
   errorMain: red.A400,
   doc: {
     fieldName: '#5F89D8',
-    arguments: '#FF6B8B',
+    arguments: '#d32f2f',
     returnType: '#EB9C00',
   },
 } as const;

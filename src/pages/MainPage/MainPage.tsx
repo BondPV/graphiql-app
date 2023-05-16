@@ -5,6 +5,7 @@ import { ButtonSchema } from '../../components/ButtonSchema';
 import { CodeEditor } from '../../components/CodeEditor';
 import { DocumentationExplorer } from '../../components/DocumentationExplorer';
 import { Drawer } from '../../components/Drawer';
+import { ModalDrawer } from '../../components/ModalDrawer';
 import { ResponseViewer } from '../../components/ResponseViewer';
 
 const MainPage = (): JSX.Element => {
@@ -24,9 +25,16 @@ const MainPage = (): JSX.Element => {
           borderRadius: { xs: 0, sm: '20px' },
         }}
       >
-        <Drawer openDrawer={isDrawerOpen} toggleDrawer={toggleDrawer}>
-          {<DocumentationExplorer />}
-        </Drawer>
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Drawer openDrawer={isDrawerOpen} toggleDrawer={toggleDrawer}>
+            {<DocumentationExplorer />}
+          </Drawer>
+        </Box>
+        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+          <ModalDrawer openDrawer={isDrawerOpen} toggleDrawer={toggleDrawer}>
+            {<DocumentationExplorer />}
+          </ModalDrawer>
+        </Box>
         <Stack
           gap={2}
           height={'100%'}
