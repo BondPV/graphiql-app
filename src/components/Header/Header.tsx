@@ -12,7 +12,7 @@ const Header = (): JSX.Element => {
       sx={{ backgroundColor: `${!trigger ? 'primary.dark' : 'primary.main'}` }}
     >
       <Container maxWidth="xl">
-        <Stack direction="row" alignItems="center">
+        <Stack direction="row" alignItems="center" sx={{ minHeight: '72px' }}>
           <Box mr={'auto'} sx={{ order: 1 }}>
             <Logo />
           </Box>

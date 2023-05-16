@@ -1,19 +1,21 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signOut } from '@firebase/auth';
+import { signOut } from '@firebase/auth';
 import MenuIcon from '@mui/icons-material/Menu';
 import {
   Alert,
   Box,
   Button,
+  Container,
   IconButton,
   Menu,
   MenuItem,
   Snackbar,
   Typography,
 } from '@mui/material';
-import { AuthContext } from '@/App/App';
+import { auth } from '@/Api/firebase';
 import { ERROR_MESSAGE, ROUTE } from '@/constants';
 
 const NavMenu = (): JSX.Element => {
@@ -22,8 +24,7 @@ const NavMenu = (): JSX.Element => {
   const [open, setOpen] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
-  const isAuth = useContext(AuthContext);
-  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
   const { t } = useTranslation();
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
@@ -74,12 +75,18 @@ const NavMenu = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (isAuth) {
+    if (loading) return;
+
+    if (user) {
       setPagesLink(['Main', 'Logout']);
     } else {
       setPagesLink(['SignIn', 'SignUp']);
     }
-  }, [isAuth]);
+  }, [user, loading]);
+
+  if (loading) {
+    return <Container></Container>;
+  }
 
   return (
     <nav>

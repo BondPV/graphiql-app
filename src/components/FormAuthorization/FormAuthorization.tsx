@@ -23,6 +23,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '@/Api/firebase';
 import {
   ERROR_CODES_FIREBASE,
   ERROR_MESSAGE,
@@ -79,7 +81,14 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
   const handleRegister = async (email: string, password: string): Promise<void> => {
     try {
       const auth = getAuth();
-      await createUserWithEmailAndPassword(auth, email, password);
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const user = res.user;
+      addDoc(collection(db, 'users'), {
+        uid: user.uid,
+        name,
+        authProvider: 'local',
+        email,
+      });
       navigate('/main');
     } catch (error) {
       const { code } = error as AuthError;
