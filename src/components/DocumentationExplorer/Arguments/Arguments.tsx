@@ -1,33 +1,35 @@
 import { ISchemaArgs } from '../../../types';
+import { ReturnType } from '../ReturnType';
 
 interface IFieldsArgs {
   args?: ISchemaArgs[];
 }
 
-const Arguments = ({ args }: IFieldsArgs): JSX.Element => (
-  <>
-    {args && (
-      <span aria-label="arguments">
-        {args?.map((arg) => (
-          <>
-            {`(`}
+const Arguments = ({ args }: IFieldsArgs): JSX.Element => {
+  return (
+    <>
+      {args && (
+        <span aria-label="arguments">
+          {args?.map((arg, index) => (
             <span key={arg.name}>
               <span>
+                {index === 0 ? `(` : ''}
+                {index > 0 ? ',' : ''}
                 <span style={{ color: 'red' }}> {arg.name}</span>
                 <span style={{ color: 'green' }}>
-                  : {arg.type.name}
-                  {arg.type.kind === 'NON_NULL' ? `${arg.type.ofType.name}!` : ''}{' '}
+                  {`: `}
+                  <ReturnType type={arg.type} />
                 </span>
                 {arg.defaultValue ? `=${arg.defaultValue}` : ''}
               </span>
               <span>{arg.description}</span>
+              {index === args.length - 1 ? `)` : ''}
             </span>
-            {`)`}
-          </>
-        ))}
-      </span>
-    )}
-  </>
-);
+          ))}
+        </span>
+      )}
+    </>
+  );
+};
 
 export { Arguments };

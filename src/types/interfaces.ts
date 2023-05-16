@@ -35,6 +35,7 @@ interface ISchemaType {
   kind: string;
   description: string;
   fields?: ISchemaField[];
+  inputFields?: ISchemaField[];
   ofType?: ISchemaOfType;
 }
 
@@ -55,7 +56,6 @@ interface ISchemaArgs {
 interface ISchemaOfType {
   name: string;
   kind: string;
-  description: string;
   ofType?: ISchemaOfType;
 }
 
