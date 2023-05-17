@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DOC_INITIAL_VALUE } from '../../constants';
-import { IDocumentationSchema } from '../../types';
+import { DOC_INITIAL_VALUE } from '@/constants';
+import { IDocumentationSchema } from '@/types';
 
 interface IInitialState {
   schema: IDocumentationSchema | null;

@@ -1,5 +1,5 @@
-import { COLORS } from '../../../constants/colors';
-import { ISchemaArgs } from '../../../types';
+import { COLORS } from '@/constants';
+import { ISchemaArgs } from '@/types';
 import { ReturnType } from '../ReturnType';
 
 interface IFieldsArgs {

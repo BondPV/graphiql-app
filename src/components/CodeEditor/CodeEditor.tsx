@@ -5,9 +5,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Divider, IconButton, Stack, styled, Tab } from '@mui/material';
 import CodeMirror from '@uiw/react-codemirror';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { setRequestHeaders, setRequestQuery, setRequestVariables } from '../../redux/slice';
-import { codeEditorTheme } from '../../theme/themeCodeEditor';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setRequestHeaders, setRequestQuery, setRequestVariables } from '@/redux/slice';
+import { codeEditorTheme } from '@/theme/themeCodeEditor';
 
 const extensions = [javascript({ jsx: true })];
 

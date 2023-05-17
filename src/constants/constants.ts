@@ -5,7 +5,7 @@ const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
 const REGEX_PASSWORD = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
 
-const PATCH = {
+const ROUTE = {
   welcomePage: '/',
   mainPage: '/main',
   signInPage: '/signin',
@@ -39,7 +39,7 @@ const DOC_INITIAL_VALUE = 'Query';
 export {
   REGEX_EMAIL,
   REGEX_PASSWORD,
-  PATCH,
+  ROUTE,
   ERROR_MESSAGE,
   ERROR_CODES_FIREBASE,
   DOC_INITIAL_VALUE,

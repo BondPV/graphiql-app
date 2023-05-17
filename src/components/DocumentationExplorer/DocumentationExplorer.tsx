@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { Box, Divider, Stack, Typography } from '@mui/material';
-import { requestToGraphQL } from '../../Api/requestsApi';
-import { DOC_INITIAL_VALUE, INTROSPECTION_QUERY } from '../../constants';
-import { COLORS } from '../../constants/colors';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { setSchema, setSchemaPreviousQuery } from '../../redux/slice';
-import { IDocumentationSchema, IRequestFetch, ISchemaType } from '../../types';
+import { requestToGraphQL } from '@/Api/requestsApi';
+import { DOC_INITIAL_VALUE, INTROSPECTION_QUERY } from '@/constants';
+import { COLORS } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setSchema, setSchemaPreviousQuery } from '@/redux/slice';
+import { IDocumentationSchema, IRequestFetch, ISchemaType } from '@/types';
 import { TypesList } from './TypesList';
 
 const DocumentationExplorer = (): JSX.Element => {

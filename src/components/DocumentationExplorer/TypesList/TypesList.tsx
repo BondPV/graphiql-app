@@ -1,7 +1,7 @@
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import { Box, Stack, Typography } from '@mui/material';
-import { COLORS } from '../../../constants/colors';
-import { ISchemaType } from '../../../types';
+import { COLORS } from '@/constants';
+import { ISchemaType } from '@/types';
 import { Arguments } from '../Arguments';
 import { ReturnType } from '../ReturnType';
 

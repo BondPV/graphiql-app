@@ -1,14 +1,13 @@
 import { lazy, Suspense, useState } from 'react';
 import { Box, CircularProgress, Container, Paper, Stack } from '@mui/material';
-import { ButtonExecute } from '../../components/ButtonExecute';
-import { ButtonSchema } from '../../components/ButtonSchema';
-import { CodeEditor } from '../../components/CodeEditor';
-// import DocumentationExplorer from '../../components/DocumentationExplorer';
-import { Drawer } from '../../components/Drawer';
-import { ModalDrawer } from '../../components/ModalDrawer';
-import { ResponseViewer } from '../../components/ResponseViewer';
+import { ButtonExecute } from '@/components/ButtonExecute';
+import { ButtonSchema } from '@/components/ButtonSchema';
+import { CodeEditor } from '@/components/CodeEditor';
+import { Drawer } from '@/components/Drawer';
+import { ModalDrawer } from '@/components/ModalDrawer';
+import { ResponseViewer } from '@/components/ResponseViewer';
 
-const DocumentationExplorer = lazy(() => import('../../components/DocumentationExplorer'));
+const DocumentationExplorer = lazy(() => import('@/components/DocumentationExplorer'));
 
 const MainPage = (): JSX.Element => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

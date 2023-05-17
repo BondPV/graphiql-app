@@ -35,7 +35,7 @@
     "createAccountLink": "У вас еще нет аккаунта? Создать аккаунт →",
     "navigateToSignInLink": "Уже имеется аккаунт? Войти →"
   },
-  "responsePlaceholder": "Нажмите кнопку воспроизведения, чтобы получить ответ здесь",
+  "responsePlaceholder": "Нажмите кнопку, чтобы получить ответ от сервера",
   "Documentation": "Документация",
   "ExecuteQuery": "Выполнить запрос",
   "Loading": "Загрузка...",

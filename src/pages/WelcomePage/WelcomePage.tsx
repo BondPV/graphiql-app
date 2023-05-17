@@ -1,20 +1,20 @@
-import { useContext } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Container } from '@mui/material';
-import { AuthContext } from '../../App/App';
-import { PATCH } from '../../constants';
+import { auth } from '@/Api/firebase';
+import { ROUTE } from '@/constants';
 
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const isAuth = useContext(AuthContext);
+  const [user] = useAuthState(auth);
 
   const redirect = (): void => {
-    if (isAuth) {
-      navigate(PATCH.mainPage);
+    if (user) {
+      navigate(ROUTE.mainPage);
     } else {
-      navigate(PATCH.signInPage);
+      navigate(ROUTE.signInPage);
     }
   };
 

@@ -1,8 +1,8 @@
 import { Typography } from '@mui/material';
-import { COLORS } from '../../../constants/colors';
-import { useAppDispatch } from '../../../hooks/redux';
-import { setSchemaQuery } from '../../../redux/slice';
-import { ISchemaOfType } from '../../../types';
+import { COLORS } from '@/constants';
+import { useAppDispatch } from '@/hooks/redux';
+import { setSchemaQuery } from '@/redux/slice';
+import { ISchemaOfType } from '@/types';
 
 interface IReturnType {
   type: ISchemaOfType;
