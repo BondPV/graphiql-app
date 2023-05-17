@@ -18,6 +18,18 @@
 - "npm run dev": for start project in developer mode
 - "npm run build": for prepare application build
 
+```js
+// You must add the file ".env.local" to the root folder of the project
+
+VITE_API_URL = 'https://countries.trevorblades.com/'
+VITE_FIREBASE_API_KEY = 'value'
+VITE_FIREBASE_AUTH_DOMAIN = 'value'
+VITE_FIREBASE_PROJECT_ID = 'value'
+VITE_FIREBASE_STORAGE_BUCKET = 'value'
+VITE_FIREBASE_MESSAGING_SENDER_ID = 'value'
+VITE_FIREBASE_APP_ID = 'value'
+```
+
 ### ⚙️ Tech Stack
 
 - [TypeScript | JavaScript With Syntax For Types.](https://www.typescriptlang.org/)
