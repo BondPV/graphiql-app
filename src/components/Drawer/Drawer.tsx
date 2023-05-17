@@ -1,5 +1,5 @@
 import { Close } from '@mui/icons-material';
-import { Box, IconButton } from '@mui/material';
+import { Box, Fade, IconButton } from '@mui/material';
 
 interface IDrawerProps {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ interface IDrawerProps {
 const Drawer = ({ children, openDrawer, toggleDrawer }: IDrawerProps): JSX.Element => {
   return (
     <>
-      {openDrawer && (
+      <Fade in={openDrawer} timeout={150}>
         <Box>
           <Box position={'absolute'} top={5} right={5} zIndex={1300}>
             <IconButton aria-label="close" onClick={toggleDrawer}>
@@ -34,7 +34,7 @@ const Drawer = ({ children, openDrawer, toggleDrawer }: IDrawerProps): JSX.Eleme
             {children}
           </Box>
         </Box>
-      )}
+      </Fade>
     </>
   );
 };

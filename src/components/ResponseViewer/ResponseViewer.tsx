@@ -26,6 +26,7 @@ const ResponseViewer = (): JSX.Element => {
         padding: 1,
         maxHeight: { xs: '50vh', md: '100%' },
         backgroundColor: { xs: grey.A200, sm: 'inherit' },
+        fontSize: { xs: '0.9rem', md: '1rem', lg: '1.1rem' },
         overflow: 'auto',
       }}
     >

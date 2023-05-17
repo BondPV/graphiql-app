@@ -14,20 +14,19 @@ const ReturnType = ({ type }: IReturnType): JSX.Element => {
   let typeValue = '';
 
   const getReturnsType = (type: ISchemaOfType): string => {
-    if (type.kind === 'OBJECT' || type.kind === 'SCALAR' || type.kind === 'INPUT_OBJECT') {
-      typeValue = type.name;
-      return type.name;
+    switch (type.kind) {
+      case 'OBJECT':
+      case 'SCALAR':
+      case 'INPUT_OBJECT':
+        typeValue = type.name;
+        return type.name;
+      case 'NON_NULL':
+        return `${getReturnsType(type.ofType!)}!`;
+      case 'LIST':
+        return `[${getReturnsType(type.ofType!)}]`;
+      default:
+        return '';
     }
-
-    if (type.kind === 'NON_NULL') {
-      return `${getReturnsType(type.ofType!)}!`;
-    }
-
-    if (type.kind === 'LIST') {
-      return `[${getReturnsType(type.ofType!)}]`;
-    }
-
-    return '';
   };
 
   const handleClick = (value: string): void => {

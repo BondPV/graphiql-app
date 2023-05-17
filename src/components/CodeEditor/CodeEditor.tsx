@@ -59,7 +59,14 @@ const CodeEditor = (): JSX.Element => {
   };
 
   return (
-    <Stack direction={'column'} height={'100%'} sx={{ maxHeight: { xs: '50vh', md: '100%' } }}>
+    <Stack
+      direction={'column'}
+      height={'100%'}
+      sx={{
+        maxHeight: { xs: '50vh', md: '100%' },
+        fontSize: { xs: '0.9rem', md: '1rem', lg: '1.1rem' },
+      }}
+    >
       <Box aria-label="query" height="100%" overflow={'auto'}>
         <CodeMirror
           value={editorRequest.query}
@@ -84,8 +91,19 @@ const CodeEditor = (): JSX.Element => {
               <IconButton>{!showTabContent ? <ExpandMoreIcon /> : <ExpandLessIcon />}</IconButton>
             </Box>
           </Stack>
-          <Box hidden={showTabContent} height={'150px'} overflow={'auto'}>
-            <TabPanel value="variables" sx={{ padding: '1rem 0' }}>
+          <Box
+            hidden={showTabContent}
+            height={'150px'}
+            overflow={'auto'}
+            sx={{ height: { xs: '70px', md: '150px' } }}
+          >
+            <TabPanel
+              value="variables"
+              sx={{
+                padding: { xs: '0', sm: '0 0 0.5rem 0', md: '1rem 0' },
+                fontSize: { xs: '0.9rem', md: '1rem', lg: '1.1rem' },
+              }}
+            >
               <CodeMirror
                 value={editorRequest.variables}
                 height="100%"
@@ -94,7 +112,13 @@ const CodeEditor = (): JSX.Element => {
                 onChange={onChangeVariables}
               />
             </TabPanel>
-            <TabPanel value="headers" sx={{ padding: '1rem 0' }}>
+            <TabPanel
+              value="headers"
+              sx={{
+                padding: { xs: '0', sm: '0 0 0.5rem 0', md: '1rem 0' },
+                fontSize: { xs: '0.9rem', md: '1rem', lg: '1.1rem' },
+              }}
+            >
               <CodeMirror
                 value={editorRequest.headers}
                 height="100%"
