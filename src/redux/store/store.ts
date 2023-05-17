@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { editorRequestReducer } from '../slice';
+import { editorRequestReducer, schemaQueryReducer } from '../slice';
 import { editorResponseReducer } from '../slice';
 
 export const store = configureStore({
   reducer: {
     editorRequest: editorRequestReducer,
     editorResponse: editorResponseReducer,
+    schemaQueryType: schemaQueryReducer,
   },
 });
 

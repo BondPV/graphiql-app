@@ -1,22 +1,22 @@
-import { red } from '@mui/material/colors';
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { COLORS } from '@/constants';
 
 let theme = createTheme({
   palette: {
     background: {
-      default: '#DADEEA',
+      default: COLORS.default,
     },
     primary: {
-      light: '#DADEEA',
-      main: '#929fc1',
-      dark: '#001E6A',
-      contrastText: '#FFFFFF',
+      light: COLORS.primaryLight,
+      main: COLORS.primaryMain,
+      dark: COLORS.primaryDark,
+      contrastText: COLORS.primaryContrastText,
     },
     secondary: {
-      main: '#19857b',
+      main: COLORS.secondaryMain,
     },
     error: {
-      main: red.A400,
+      main: COLORS.errorMain,
     },
   },
   breakpoints: {
@@ -45,10 +45,10 @@ let theme = createTheme({
             width: '5px',
           },
           '&::webkit-scrollbar-track': {
-            background: '#DADEEA',
+            background: COLORS.primaryLight,
           },
           '&::-webkit-scrollbar-thumb': {
-            backgroundColor: '#929fc1',
+            backgroundColor: COLORS.primaryMain,
           },
         },
       },

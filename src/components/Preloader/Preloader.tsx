@@ -6,7 +6,7 @@ const Preloader = (): JSX.Element => (
     sx={{
       color: 'theme.primary.dark',
       width: '100%',
-      height: '100vh',
+      height: 'calc(100vh - 190px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -16,4 +16,4 @@ const Preloader = (): JSX.Element => (
   </Container>
 );
 
-export default Preloader;
+export { Preloader };

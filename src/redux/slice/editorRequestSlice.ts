@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IEditorData } from '../../types';
+import { IEditorData } from '@/types';
 
 const defaultQuery = `query GetCountry($code: ID!) {
   country(code: $code) {
     name
     awsRegion
     capital
-    currencies
     currency
     languages{
       name
@@ -14,7 +13,6 @@ const defaultQuery = `query GetCountry($code: ID!) {
     }
     native
     phone
-    phones
   }
 }`;
 

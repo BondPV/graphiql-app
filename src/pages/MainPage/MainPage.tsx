@@ -1,13 +1,23 @@
-import { Box, Container, Paper, Stack } from '@mui/material';
+import { lazy, Suspense, useState } from 'react';
+import { Box, CircularProgress, Container, Paper, Stack } from '@mui/material';
 import { ButtonExecute } from '@/components/ButtonExecute';
 import { ButtonSchema } from '@/components/ButtonSchema';
 import { CodeEditor } from '@/components/CodeEditor';
+import { Drawer } from '@/components/Drawer';
+import { ModalDrawer } from '@/components/ModalDrawer';
 import { ResponseViewer } from '@/components/ResponseViewer';
 
+const DocumentationExplorer = lazy(() => import('@/components/DocumentationExplorer'));
+
 const MainPage = (): JSX.Element => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const toggleDrawer = (): void => setIsDrawerOpen(!isDrawerOpen);
+
   return (
     <Container maxWidth="xl" sx={{ paddingLeft: { xs: 0, sm: 3 }, paddingRight: { xs: 0, sm: 3 } }}>
       <Box
+        position={'relative'}
         sx={{
           height: { xs: 'auto', md: 'calc(100vh - 190px)' },
           mt: 2,
@@ -16,6 +26,20 @@ const MainPage = (): JSX.Element => {
           borderRadius: { xs: 0, sm: '20px' },
         }}
       >
+        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Drawer openDrawer={isDrawerOpen} toggleDrawer={toggleDrawer}>
+            <Suspense fallback={<CircularProgress />}>
+              <DocumentationExplorer />
+            </Suspense>
+          </Drawer>
+        </Box>
+        <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+          <ModalDrawer openDrawer={isDrawerOpen} toggleDrawer={toggleDrawer}>
+            <Suspense fallback={<CircularProgress />}>
+              <DocumentationExplorer />
+            </Suspense>
+          </ModalDrawer>
+        </Box>
         <Stack
           gap={2}
           height={'100%'}
@@ -45,7 +69,7 @@ const MainPage = (): JSX.Element => {
               direction={{ xs: 'row', sm: 'column' }}
             >
               <ButtonExecute />
-              <ButtonSchema />
+              <ButtonSchema toggleDrawer={toggleDrawer} />
             </Stack>
           </Paper>
           <Box
