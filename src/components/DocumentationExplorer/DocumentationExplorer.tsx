@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { Box, Divider, Stack, Typography } from '@mui/material';
@@ -6,12 +6,12 @@ import { requestToGraphQL } from '../../Api/requestsApi';
 import { DOC_INITIAL_VALUE, INTROSPECTION_QUERY } from '../../constants';
 import { COLORS } from '../../constants/colors';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { setSchemaPreviousQuery } from '../../redux/slice';
+import { setSchema, setSchemaPreviousQuery } from '../../redux/slice';
 import { IDocumentationSchema, IRequestFetch, ISchemaType } from '../../types';
 import { TypesList } from './TypesList';
 
 const DocumentationExplorer = (): JSX.Element => {
-  const [schema, setSchema] = useState<null | IDocumentationSchema>(null);
+  const schema = useAppSelector((state) => state.schemaQueryType).schema;
   const queryType = useAppSelector((state) => state.schemaQueryType).value;
   const previousQueryType = useAppSelector((state) => state.schemaQueryType).previousValue;
   const dispatch = useAppDispatch();
@@ -28,12 +28,12 @@ const DocumentationExplorer = (): JSX.Element => {
       const responseData = await requestToGraphQL(schemaRequest);
 
       if (responseData instanceof Object && 'data' in responseData) {
-        setSchema(responseData as IDocumentationSchema);
+        dispatch(setSchema(responseData as IDocumentationSchema));
       }
     }
 
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   if (!schema) {
     return <Box>{t('Loading')}</Box>;
@@ -47,7 +47,7 @@ const DocumentationExplorer = (): JSX.Element => {
     dispatch(setSchemaPreviousQuery());
   };
 
-  let title: React.ReactNode = (
+  let docsHeader: React.ReactNode = (
     <Box>
       <Stack direction={'row'} alignItems={'center'}>
         <ArrowLeftIcon />
@@ -69,12 +69,12 @@ const DocumentationExplorer = (): JSX.Element => {
     </Box>
   );
 
-  let docs: React.ReactNode = null;
+  let title: React.ReactNode = null;
 
   if (queryType === DOC_INITIAL_VALUE) {
-    title = null;
+    docsHeader = null;
 
-    docs = (
+    title = (
       <Box>
         <Typography component="h2" variant="h6" mt={1}>
           {t('Documentation')}
@@ -88,8 +88,8 @@ const DocumentationExplorer = (): JSX.Element => {
 
   return (
     <Box>
-      {docs}
       {title}
+      {docsHeader}
       {queryTypes.map((type) => (
         <Box key={type.name} sx={{ fontSize: '1rem' }}>
           <Typography component="h3" variant="h6" mt={1}>
@@ -105,4 +105,4 @@ const DocumentationExplorer = (): JSX.Element => {
   );
 };
 
-export { DocumentationExplorer };
+export default DocumentationExplorer;

@@ -1,1 +1,1 @@
-export * from './DocumentationExplorer';
+export { default } from './DocumentationExplorer';
