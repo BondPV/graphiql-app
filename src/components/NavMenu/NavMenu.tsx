@@ -140,7 +140,7 @@ const NavMenu = (): JSX.Element => {
       <Snackbar
         anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
         open={open}
-        autoHideDuration={5000}
+        autoHideDuration={2000}
         onClose={handleClose}
         sx={{
           marginBottom: 10,
