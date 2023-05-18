@@ -58,10 +58,10 @@ const DocumentationExplorer = (): JSX.Element => {
     title = (
       <Box>
         <Typography component="h2" variant="h6" mt={1}>
-          {t('Documentation')}
+          {t('documentation')}
         </Typography>
         <Typography component="p" variant="body2" mt={1}>
-          {t('DocsDescription')}
+          {t('docsDescription')}
         </Typography>
       </Box>
     );
