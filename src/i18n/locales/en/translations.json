@@ -36,8 +36,9 @@
     "navigateToSignInLink": "Already have an account? Sign in →"
   },
   "responsePlaceholder": "Hit the Play Button to get a response here",
-  "Documentation": "Documentation",
+  "documentation": "Documentation",
+  "notDocumentation": "documentation not available",
   "ExecuteQuery": "Execute Query",
   "Loading": "Loading...",
-  "DocsDescription": "A GraphQL schema provides a root type for each kind of operation."
+  "docsDescription": "A GraphQL schema provides a root type for each kind of operation."
 }
