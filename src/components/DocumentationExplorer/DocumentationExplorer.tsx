@@ -1,13 +1,11 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import { Box, Divider, Stack, Typography } from '@mui/material';
-import { requestToGraphQL } from '@/Api/requestsApi';
-import { DOC_INITIAL_VALUE, INTROSPECTION_QUERY } from '@/constants';
+import { DOC_INITIAL_VALUE } from '@/constants';
 import { COLORS } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { setSchema, setSchemaPreviousQuery } from '@/redux/slice';
-import { IDocumentationSchema, IRequestFetch, ISchemaType } from '@/types';
+import { setSchemaPreviousQuery } from '@/redux/slice';
+import { ISchemaType } from '@/types';
 import { Preloader } from '../Preloader';
 import { TypesList } from './TypesList';
 
@@ -17,24 +15,6 @@ const DocumentationExplorer = (): JSX.Element => {
   const previousQueryType = useAppSelector((state) => state.schemaQueryType).previousValue;
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const schemaRequest: IRequestFetch = {
-      query: INTROSPECTION_QUERY,
-      variables: {},
-      headers: {},
-    };
-
-    async function fetchData(): Promise<void> {
-      const responseData = await requestToGraphQL(schemaRequest);
-
-      if (responseData instanceof Object && 'data' in responseData) {
-        dispatch(setSchema(responseData as IDocumentationSchema));
-      }
-    }
-
-    fetchData();
-  }, [dispatch]);
 
   if (!schema) {
     return <Preloader height={'100%'} size={50} />;
