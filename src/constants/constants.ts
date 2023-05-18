@@ -1,6 +1,8 @@
 import { TFunction } from 'i18next';
 import { IConstantTranslationFunc } from '../types';
 
+const MAIN_CONTENT_HEIGHT = 'calc(100vh - 190px)';
+
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
 const REGEX_PASSWORD = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
@@ -37,6 +39,7 @@ const ERROR_CODES_FIREBASE = {
 const DOC_INITIAL_VALUE = 'Query';
 
 export {
+  MAIN_CONTENT_HEIGHT,
   REGEX_EMAIL,
   REGEX_PASSWORD,
   ROUTE,

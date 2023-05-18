@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Close } from '@mui/icons-material';
-import { Box, CircularProgress, Fade, IconButton, Modal } from '@mui/material';
+import { Box, Fade, IconButton, Modal } from '@mui/material';
+import { Preloader } from '../Preloader';
 
 const DocumentationExplorer = lazy(() => import('@/components/DocumentationExplorer'));
 
@@ -19,7 +20,7 @@ const DocsDrawer = ({ openDrawer, toggleDrawer }: IDrawerProps): JSX.Element => 
   );
 
   const docsContent = (
-    <Suspense fallback={<CircularProgress />}>
+    <Suspense fallback={<Preloader height={'100%'} size={50} />}>
       <DocumentationExplorer />
     </Suspense>
   );

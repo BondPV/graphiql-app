@@ -1,18 +1,23 @@
 import { Container } from '@mui/material';
 import { CircularProgress } from '@mui/material';
+import { MAIN_CONTENT_HEIGHT } from '@/constants';
 
-const Preloader = (): JSX.Element => (
+interface IPreloader {
+  height?: string;
+  size?: number;
+}
+
+const Preloader = ({ height = MAIN_CONTENT_HEIGHT, size = 70 }: IPreloader): JSX.Element => (
   <Container
     sx={{
-      color: 'theme.primary.dark',
       width: '100%',
-      height: 'calc(100vh - 190px)',
+      height: height,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
     }}
   >
-    <CircularProgress color="inherit" size={70} />
+    <CircularProgress color="primary" size={size} />
   </Container>
 );
 

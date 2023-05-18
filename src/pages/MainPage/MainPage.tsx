@@ -5,7 +5,7 @@ import { ButtonSchema } from '@/components/ButtonSchema';
 import { CodeEditor } from '@/components/CodeEditor';
 import { DocsDrawer } from '@/components/DocsDrawer';
 import { ResponseViewer } from '@/components/ResponseViewer';
-import { COLORS } from '@/constants';
+import { COLORS, MAIN_CONTENT_HEIGHT } from '@/constants';
 
 const MainPage = (): JSX.Element => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -18,7 +18,7 @@ const MainPage = (): JSX.Element => {
         mt={2}
         direction={'row'}
         justifyContent={'space-between'}
-        sx={{ height: { xs: 'auto', mt: 2, md: 'calc(100vh - 190px)' } }}
+        sx={{ height: { xs: 'auto', mt: 2, md: MAIN_CONTENT_HEIGHT } }}
       >
         <Box
           position={'relative'}

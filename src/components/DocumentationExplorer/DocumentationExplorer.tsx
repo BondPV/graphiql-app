@@ -8,6 +8,7 @@ import { COLORS } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setSchema, setSchemaPreviousQuery } from '@/redux/slice';
 import { IDocumentationSchema, IRequestFetch, ISchemaType } from '@/types';
+import { Preloader } from '../Preloader';
 import { TypesList } from './TypesList';
 
 const DocumentationExplorer = (): JSX.Element => {
@@ -36,7 +37,7 @@ const DocumentationExplorer = (): JSX.Element => {
   }, [dispatch]);
 
   if (!schema) {
-    return <Box>{t('Loading')}</Box>;
+    return <Preloader height={'100%'} size={50} />;
   }
 
   const queryTypes: ISchemaType[] = schema.data?.__schema.types.filter((type) =>
