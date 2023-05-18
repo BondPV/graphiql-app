@@ -2,6 +2,7 @@ import { red } from '@mui/material/colors';
 
 export const COLORS = {
   default: '#DADEEA',
+  background: '#FFFFFF',
   primaryLight: '#DADEEA',
   primaryMain: '#929fc1',
   primaryDark: '#001E6A',

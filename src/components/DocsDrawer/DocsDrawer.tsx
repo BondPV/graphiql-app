@@ -7,14 +7,15 @@ const DocumentationExplorer = lazy(() => import('@/components/DocumentationExplo
 interface IDrawerProps {
   openDrawer: boolean;
   toggleDrawer: () => void;
-  mode: 'fixed' | 'relative';
 }
 
-const DocsDrawer = ({ openDrawer, toggleDrawer, mode }: IDrawerProps): JSX.Element => {
+const DocsDrawer = ({ openDrawer, toggleDrawer }: IDrawerProps): JSX.Element => {
   const closeIcon = (
-    <IconButton aria-label="close" onClick={toggleDrawer}>
-      <Close />
-    </IconButton>
+    <Box position={'absolute'} top={'8px'} right={'8px'} zIndex={1300}>
+      <IconButton aria-label="close" onClick={toggleDrawer}>
+        <Close />
+      </IconButton>
+    </Box>
   );
 
   const docsContent = (
@@ -25,90 +26,74 @@ const DocsDrawer = ({ openDrawer, toggleDrawer, mode }: IDrawerProps): JSX.Eleme
 
   return (
     <>
-      {mode === 'relative' && (
+      <Box data-size="desktop" position={'relative'} sx={{ display: { xs: 'none', lg: 'block' } }}>
+        {closeIcon}
         <Box
-          aria-label="docsDesktop"
-          position={'relative'}
-          sx={{ display: { xs: 'none', lg: 'block' } }}
+          py={1}
+          px={2}
+          height={'100%'}
+          width={'330px'}
+          overflow={'auto'}
+          whiteSpace={'normal'}
+          bgcolor={'primary.light'}
         >
-          <Box position={'absolute'} top={20} right={5} zIndex={1300}>
+          {docsContent}
+        </Box>
+      </Box>
+      <Box
+        data-size="tablet"
+        position={'relative'}
+        sx={{
+          display: { xs: 'none', md: 'block', lg: 'none' },
+        }}
+      >
+        <Fade in={openDrawer} timeout={200}>
+          <Box>
             {closeIcon}
-          </Box>
-          <Box
-            my={3}
-            mx={1}
-            padding={1}
-            height={'100%'}
-            width={'330px'}
-            overflow={'auto'}
-            whiteSpace={'normal'}
-            bgcolor={'primary.light'}
-          >
-            {docsContent}
-          </Box>
-        </Box>
-      )}
-      {mode === 'fixed' && (
-        <Box
-          aria-label="docsTablet"
-          sx={{
-            display: { xs: 'none', sm: 'block', lg: 'none' },
-          }}
-        >
-          <Fade in={openDrawer} timeout={150}>
-            <Box>
-              <Box position={'absolute'} top={5} right={5} zIndex={1300}>
-                {closeIcon}
-              </Box>
-              <Box
-                position={'absolute'}
-                padding={1}
-                top={0}
-                right={0}
-                height={'100%'}
-                width={'330px'}
-                overflow={'auto'}
-                whiteSpace={'normal'}
-                bgcolor={'primary.light'}
-                borderLeft={3}
-                borderColor={'primary.main'}
-                zIndex={1200}
-              >
-                {docsContent}
-              </Box>
-            </Box>
-          </Fade>
-        </Box>
-      )}
-      {mode === 'fixed' && (
-        <Box aria-label="docsMobile" sx={{ display: { xs: 'block', sm: 'none' } }}>
-          <Modal
-            open={openDrawer}
-            onClose={toggleDrawer}
-            sx={{ display: { xs: 'block', md: 'none' } }}
-          >
             <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: { xs: '95%', sm: '70%' },
-                height: '80vh',
-                overflow: 'auto',
-                bgcolor: 'background.paper',
-                boxShadow: 24,
-                p: 2,
-              }}
+              position={'absolute'}
+              padding={1}
+              top={0}
+              right={0}
+              height={'100%'}
+              width={'330px'}
+              overflow={'auto'}
+              whiteSpace={'normal'}
+              bgcolor={'primary.light'}
+              borderLeft={3}
+              borderColor={'primary.main'}
+              zIndex={1200}
             >
-              <Box position={'absolute'} top={5} right={5} zIndex={1300}>
-                {closeIcon}
-              </Box>
               {docsContent}
             </Box>
-          </Modal>
-        </Box>
-      )}
+          </Box>
+        </Fade>
+      </Box>
+      <Box data-size="mobile" sx={{ display: { xs: 'block', sm: 'none' } }}>
+        <Modal
+          open={openDrawer}
+          onClose={toggleDrawer}
+          sx={{ display: { xs: 'block', md: 'none' } }}
+        >
+          <Box
+            sx={{
+              position: 'absolute',
+              p: 2,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: { xs: '95%', sm: '70%' },
+              height: '80vh',
+              overflow: 'auto',
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+            }}
+          >
+            {closeIcon}
+            {docsContent}
+          </Box>
+        </Modal>
+      </Box>
     </>
   );
 };
