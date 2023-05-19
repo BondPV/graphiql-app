@@ -20,9 +20,9 @@ const requestToGraphQL = async ({
     return await response.json();
   } catch (error: unknown) {
     if (error instanceof Error) {
-      return error.message;
+      return `Error: ${error.message}`;
     } else {
-      return 'Server error';
+      return 'Error: server error';
     }
   }
 };

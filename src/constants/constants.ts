@@ -27,6 +27,7 @@ const ERROR_MESSAGE = (
   wrongPassword: t('errors.wrongPassword'),
   userNotFound: t('errors.userNotFound'),
   invalidEmailFirebase: t('errors.invalidEmailFirebase'),
+  requestFailed: t('errors.requestFailed'),
 });
 
 const ERROR_CODES_FIREBASE = {
