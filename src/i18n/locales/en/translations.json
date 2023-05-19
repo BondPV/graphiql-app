@@ -40,5 +40,6 @@
   "notDocumentation": "documentation not available",
   "ExecuteQuery": "Execute Query",
   "Loading": "Loading...",
-  "docsDescription": "A GraphQL schema provides a root type for each kind of operation."
+  "docsDescription": "A GraphQL schema provides a root type for each kind of operation.",
+  "somethingIsBroken": "Oops, something is broken ..."
 }
