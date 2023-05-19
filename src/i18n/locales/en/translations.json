@@ -36,6 +36,8 @@
     "createAccountLink": "Don`t have an account? Create an account →",
     "navigateToSignInLink": "Already have an account? Sign in →"
   },
+  "registrationSuccessful" : "Registration successful",
+  "authorizationSuccessful" : "Authorization successful",
   "responsePlaceholder": "Hit the Play Button to get a response here",
   "documentation": "Documentation",
   "notDocumentation": "documentation not available",

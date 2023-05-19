@@ -36,6 +36,8 @@
     "createAccountLink": "У вас еще нет аккаунта? Создать аккаунт →",
     "navigateToSignInLink": "Уже имеется аккаунт? Войти →"
   },
+  "registrationSuccessful" : "Регистрация успешна",
+  "authorizationSuccessful" : "Авторизация успешна",
   "responsePlaceholder": "Нажмите кнопку, чтобы получить ответ от сервера",
   "documentation": "Документация",
   "notDocumentation": "Документация недоступна",

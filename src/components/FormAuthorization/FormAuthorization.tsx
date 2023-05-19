@@ -29,6 +29,7 @@ import {
   REGEX_EMAIL,
   REGEX_PASSWORD,
   ROUTE,
+  SUCCESS_MESSAGE,
 } from '@/constants';
 import { useAppDispatch } from '@/hooks/redux';
 import { setAlertMsg } from '@/redux/slice';
@@ -80,6 +81,7 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
         authProvider: 'local',
         email,
       });
+      dispatch(setAlertMsg({ message: SUCCESS_MESSAGE(t).registration, severity: 'success' }));
       navigate('/main');
     } catch (error) {
       const { code } = error as AuthError;
@@ -96,6 +98,7 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
     try {
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email, password);
+      dispatch(setAlertMsg({ message: SUCCESS_MESSAGE(t).authorization, severity: 'success' }));
       navigate(ROUTE.mainPage);
     } catch (error) {
       const { code } = error as AuthError;

@@ -5,7 +5,8 @@ const MAIN_CONTENT_HEIGHT = 'calc(100vh - 190px)';
 
 const REGEX_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
-const REGEX_PASSWORD = /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,}/g;
+const REGEX_PASSWORD =
+  /(?=.*[0-9])(?=.*[!@#$%^&:;~\?\/\*\.\,\[\]\-\+\(\)\<\>])(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&:;~\?\/\*\.\,\[\]\-\+\(\)\<\>]{8,}/g;
 
 const ROUTE = {
   welcomePage: '/',
@@ -14,6 +15,13 @@ const ROUTE = {
   signUpPage: '/signup',
   errorPage: '*',
 };
+
+const SUCCESS_MESSAGE = (
+  t: TFunction<'translation', undefined, 'translation'>
+): IConstantTranslationFunc => ({
+  registration: t('registrationSuccessful'),
+  authorization: t('authorizationSuccessful'),
+});
 
 const ERROR_MESSAGE = (
   t: TFunction<'translation', undefined, 'translation'>
@@ -47,4 +55,5 @@ export {
   ERROR_MESSAGE,
   ERROR_CODES_FIREBASE,
   DOC_INITIAL_VALUE,
+  SUCCESS_MESSAGE,
 };
