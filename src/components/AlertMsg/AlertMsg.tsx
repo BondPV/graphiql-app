@@ -31,7 +31,7 @@ const AlertMsg = (): JSX.Element => {
     <Snackbar
       anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
       open={open}
-      autoHideDuration={1500}
+      autoHideDuration={2500}
       onClose={handleClose}
       TransitionProps={{
         onExited: handleExited,

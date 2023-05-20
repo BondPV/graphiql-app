@@ -28,6 +28,7 @@ const MainPage = (): JSX.Element => {
             p: 1,
             backgroundColor: COLORS.background,
             borderRadius: { xs: 0, sm: '20px' },
+            overflow: 'auto',
           }}
         >
           <Stack

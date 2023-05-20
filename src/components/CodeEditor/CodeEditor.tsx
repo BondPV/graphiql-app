@@ -95,7 +95,7 @@ const CodeEditor = (): JSX.Element => {
             hidden={showTabContent}
             height={'150px'}
             overflow={'auto'}
-            sx={{ height: { xs: '70px', md: '150px' } }}
+            sx={{ height: { xs: '75px', md: '150px' } }}
           >
             <TabPanel
               value="variables"
