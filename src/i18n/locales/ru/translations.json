@@ -24,7 +24,8 @@
     "emailAlreadyInUse": "Такой электронный адрес уже зарегистрирован.",
     "wrongPassword": "Введен неверный пароль.",
     "userNotFound": "Пользователь с таким электронным адресом не зарегистрирован, пожалуйста, перейдите на вкладку регистрации",
-    "invalidEmailFirebase": "Введен недопустимый электронный адрес"
+    "invalidEmailFirebase": "Введен недопустимый электронный адрес",
+    "requestFailed": "ошибка запроса"
   },
   "formAuthorization": {
     "signIn": "Войти",
@@ -35,10 +36,13 @@
     "createAccountLink": "У вас еще нет аккаунта? Создать аккаунт →",
     "navigateToSignInLink": "Уже имеется аккаунт? Войти →"
   },
+  "registrationSuccessful" : "Регистрация успешна",
+  "authorizationSuccessful" : "Авторизация успешна",
   "responsePlaceholder": "Нажмите кнопку, чтобы получить ответ от сервера",
   "documentation": "Документация",
   "notDocumentation": "Документация недоступна",
   "ExecuteQuery": "Выполнить запрос",
   "Loading": "Загрузка...",
-  "docsDescription": "Схема GraphQL предоставляет корневой тип для каждого вида операций."
+  "docsDescription": "Схема GraphQL предоставляет корневой тип для каждого вида операций.",
+  "somethingIsBroken": "Ой, у нас что то сломалось ..."
 }

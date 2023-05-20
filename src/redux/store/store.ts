@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { editorRequestReducer, schemaQueryReducer } from '../slice';
+import { alertMsgReducer, editorRequestReducer, schemaQueryReducer } from '../slice';
 import { editorResponseReducer } from '../slice';
 
 export const store = configureStore({
@@ -7,6 +7,7 @@ export const store = configureStore({
     editorRequest: editorRequestReducer,
     editorResponse: editorResponseReducer,
     schemaQueryType: schemaQueryReducer,
+    alertMsg: alertMsgReducer,
   },
 });
 

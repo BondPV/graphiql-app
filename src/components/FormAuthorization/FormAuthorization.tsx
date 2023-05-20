@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
-  Alert,
   Avatar,
   Box,
   Button,
@@ -12,7 +11,6 @@ import {
   IconButton,
   InputAdornment,
   Link,
-  Snackbar,
   styled,
   TextField,
   Typography,
@@ -31,7 +29,10 @@ import {
   REGEX_EMAIL,
   REGEX_PASSWORD,
   ROUTE,
+  SUCCESS_MESSAGE,
 } from '@/constants';
+import { useAppDispatch } from '@/hooks/redux';
+import { setAlertMsg } from '@/redux/slice';
 import { ILoginForm } from '@/types';
 
 const CssTextField = styled(TextField)({
@@ -53,17 +54,8 @@ const CssTextField = styled(TextField)({
 const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Element => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const [error, setError] = useState('');
-  const [open, setOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -89,15 +81,16 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
         authProvider: 'local',
         email,
       });
+      dispatch(setAlertMsg({ message: SUCCESS_MESSAGE(t).registration, severity: 'success' }));
       navigate('/main');
     } catch (error) {
       const { code } = error as AuthError;
+
       if (code === ERROR_CODES_FIREBASE.emailAlreadyInUse) {
-        setError(ERROR_MESSAGE(t).emailAlreadyInUse);
+        dispatch(setAlertMsg({ message: ERROR_MESSAGE(t).emailAlreadyInUse }));
       } else {
-        setError(ERROR_MESSAGE(t).unknownError);
+        dispatch(setAlertMsg({ message: ERROR_MESSAGE(t).unknownError }));
       }
-      setOpen(true);
     }
   };
 
@@ -105,26 +98,25 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
     try {
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email, password);
+      dispatch(setAlertMsg({ message: SUCCESS_MESSAGE(t).authorization, severity: 'success' }));
       navigate(ROUTE.mainPage);
     } catch (error) {
       const { code } = error as AuthError;
 
       switch (code) {
         case ERROR_CODES_FIREBASE.wrongPassword:
-          setError(ERROR_MESSAGE(t).wrongPassword);
+          dispatch(setAlertMsg({ message: ERROR_MESSAGE(t).wrongPassword }));
           break;
         case ERROR_CODES_FIREBASE.userNotFound:
-          setError(ERROR_MESSAGE(t).userNotFound);
+          dispatch(setAlertMsg({ message: ERROR_MESSAGE(t).userNotFound }));
           break;
         case ERROR_CODES_FIREBASE.invalidEmailFirebase:
-          setError(ERROR_MESSAGE(t).invalidEmailFirebase);
+          dispatch(setAlertMsg({ message: ERROR_MESSAGE(t).invalidEmailFirebase }));
           break;
         default:
-          setError(ERROR_MESSAGE(t).unknownError);
+          dispatch(setAlertMsg({ message: ERROR_MESSAGE(t).unknownError }));
           break;
       }
-
-      setOpen(true);
     }
   };
 
@@ -250,19 +242,6 @@ const FormAuthorization = ({ registration }: { registration: boolean }): JSX.Ele
           {t('formAuthorization.createAccountLink')}
         </Link>
       )}
-      <Snackbar
-        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
-        open={open}
-        autoHideDuration={2000}
-        onClose={handleClose}
-        sx={{
-          marginBottom: 10,
-        }}
-      >
-        <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
-          {error}
-        </Alert>
-      </Snackbar>
     </Container>
   );
 };
