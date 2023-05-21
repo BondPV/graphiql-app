@@ -39,15 +39,26 @@
   "responsePlaceholder": "Hit the Play Button to get a response here",
   "documentation": "Documentation",
   "notDocumentation": "documentation not available",
-  "ExecuteQuery": "Execute Query",
   "Loading": "Loading...",
   "docsDescription": "A GraphQL schema provides a root type for each kind of operation.",
-  "somethingIsBroken": "Oops, something is broken ..."
+  "somethingIsBroken": "Oops, something is broken ...",
   "Documentation": "Documentation",
   "ExecuteQuery": "Execute Query",
   "welcomePage": {
     "description": "This app allows you to get information about countries, continents, and languages via a GraphQL API. It provides a complete and understandable description of the data in your API, gives you the power to find out for exactly what you need, makes it easier to evolve APIs over time, and enables powerful developer tools.",
     "startButton": "Get started",
-    "videoSubtitle": "How to use the app"
+    "videoSubtitle": "How to use the app",
+    "subtitleAdvantages": "Advantages",
+    "advantageItemFirst": "Allows to get data by country name, region, capital",
+    "advantageItemSecond": "Provides a list of all currencies or a specific currency by name",
+    "advantageItemThird": "Supports search by regional blocks and abbreviation",
+    "advantageItemFourth": "Displays a list of all languages or language by code",
+    "team": "Our team",
+    "teamMemberFirst":  "Marina",
+    "teamMemberSecond": "Alesia",
+    "teamLead": "Pavel",
+    "teamMemberFirstDescription": "Implemented authorization and authentication using Firebase with email, and client-side validation. Create user redirection to the welcome page when the token expires. Implemented routing.",
+    "teamLeadDescription": "Implemented localization of the application into 2 languages. Created the GraphiQL page. Developed the editor that allows you to edit the request. Created the header section and the variable section. Implemented the answer section. Wrote documentation.",
+    "teamMemberSecondDescription": "Created the single design for the entire application. Developed the welcome page. Created the 404 page. Implemented adaptive and semantic layout. Created the video tutorial with the explanation of how each of the items is implemented in the app."
   }
 }

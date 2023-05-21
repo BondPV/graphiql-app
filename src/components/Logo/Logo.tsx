@@ -18,7 +18,7 @@ const Logo = (): JSX.Element => {
       sx={{
         transition: '0.3s',
         '&:hover': {
-          color: 'primary.main',
+          color: 'primary.light',
         },
       }}
     >

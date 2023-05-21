@@ -8,10 +8,8 @@ import boxUpImage from '@/assets/box-wave-up.svg';
 import firstTeamMemberImage from '@/assets/team-member1.jpg';
 import secondTeamMemberImage from '@/assets/team-member2.jpg';
 import teamLeadImage from '@/assets/team-lead.jpg';
-import { AuthContext } from '@/App/App';
-import { Container } from '@mui/material';
 import { auth } from '@/Api/firebase';
-import { ROUTE } from '@/constants';
+import { COLORS, ROUTE } from '@/constants';
 
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -30,9 +28,9 @@ const WelcomePage = (): JSX.Element => {
     <Box
       maxWidth="xl"
       sx={{
-        padding: 0,
+        margin: '0 auto',
         color: 'primary.dark',
-        background: 'linear-gradient(222.57deg, #FFFFFF -5.18%, #EBEEF3 24.79%, #DADEEA 71.54%)',
+        background: COLORS.gradient.light,
       }}
     >
       <Box
@@ -86,120 +84,132 @@ const WelcomePage = (): JSX.Element => {
         sx={{
           position: 'relative',
           zIndex: '3',
-          padding: ' 12rem 0 20rem',
-          background: 'radial-gradient(83.22% 83.22% at 38.66% 1.86%, #000B26 0%, #001E6A 100%)',
+          background: COLORS.gradient.dark,
         }}
       >
         <Box
           component="div"
           sx={{
             width: '100%',
-            minHeight: '19rem',
+            minHeight: { xs: '6rem', md: '13rem', xl: '17rem' },
             background: `url(${boxDownImage}) no-repeat`,
-            backgroundSize: 'contain',
-            position: 'absolute',
+            backgroundSize: 'cover',
+            position: 'relative',
             top: '-21px',
-            zIndex: '2',
+            zIndex: '5',
           }}
         ></Box>
+        <Box>
+          <Typography variant="h2" color="primary" textAlign="center">
+            {t('welcomePage.subtitleAdvantages')}
+          </Typography>
+          <Grid
+            container
+            spacing={{ xs: 1, md: 2 }}
+            columns={{ xs: 1, md: 12 }}
+            color="primary.contrastText"
+            padding="2rem 0 3rem"
+            display="flex"
+            justifyContent="space-evenly"
+          >
+            <Grid
+              item
+              xs={5}
+              sx={{
+                background: COLORS.gradient.gridItem,
+                borderRadius: '20px',
+                alignItems: 'center',
+                textAlign: 'center',
+                margin: '2rem',
+              }}
+            >
+              <Typography variant="h5" component="p" padding="2rem">
+                {t('welcomePage.advantageItemFirst')}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              sx={{
+                background: COLORS.gradient.gridItem,
+                borderRadius: '20px',
+                alignItems: 'center',
+                textAlign: 'center',
+                margin: '2rem',
+              }}
+            >
+              <Typography variant="h5" component="p" padding="2rem">
+                {t('welcomePage.advantageItemSecond')}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              sx={{
+                background: COLORS.gradient.gridItem,
+                borderRadius: '20px',
+                alignItems: 'center',
+                textAlign: 'center',
+                margin: '2rem',
+              }}
+            >
+              <Typography variant="h5" component="p" padding="2rem">
+                {t('welcomePage.advantageItemThird')}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              xs={5}
+              sx={{
+                background: COLORS.gradient.gridItem,
+                borderRadius: '20px',
+                alignItems: 'center',
+                textAlign: 'center',
+                margin: '2rem',
+              }}
+            >
+              <Typography variant="h5" component="p" padding="2rem">
+                {t('welcomePage.advantageItemFourth')}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
 
-        <Typography variant="h2" color="primary" textAlign="center">
-          {t('Advantages')}
-        </Typography>
-        <Grid
-          container
-          spacing={2}
-          color="primary.contrastText"
-          padding="2rem"
-          display="flex"
-          justifyContent="space-evenly"
-        >
-          <Grid
-            item
-            xs={5}
+        <Box>
+          <Typography variant="h2" color="primary" textAlign="center">
+            {t('welcomePage.videoSubtitle')}
+          </Typography>
+          <Box
             sx={{
-              background:
-                'radial-gradient(97.45% 330.08% at 4.95% 10.11%, #929fc1 0%, rgba(0, 30, 106, 0.5) 100%)',
-              borderRadius: '20px',
+              display: 'flex',
+              flexDirection: 'column',
               alignItems: 'center',
-              textAlign: 'center',
-              margin: '2rem',
+              justifyContent: 'center',
             }}
           >
-            <Typography variant="h5" component="p" padding="2rem">
-              {t('Ask for what you need, get exactly that')}
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            xs={5}
+            <CardMedia
+              component="iframe"
+              image="https://www.youtube.com/embed/1V3ZY_TXKwU"
+              sx={{
+                width: { xs: '80%', md: '50%' },
+                minHeight: '30rem',
+                border: 'none',
+                margin: '3rem 0',
+              }}
+            />
+          </Box>
+          <Box
+            component="div"
             sx={{
-              background:
-                'radial-gradient(97.45% 330.08% at 4.95% 10.11%, #929fc1 0%, rgba(0, 30, 106, 0.5) 100%)',
-              borderRadius: '20px',
-              alignItems: 'center',
-              textAlign: 'center',
-              margin: '2rem',
+              width: '100%',
+              minHeight: { xs: '6rem', md: '13rem', xl: '17rem' },
+              background: `url(${boxUpImage}) no-repeat`,
+              backgroundSize: 'cover',
+              position: 'relative',
+              bottom: '-2px',
+              zIndex: '5',
             }}
-          >
-            <Typography variant="h5" component="p" padding="2rem">
-              {t('Get many resources in a single request')}
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            xs={5}
-            sx={{
-              background:
-                'radial-gradient(97.45% 330.08% at 4.95% 10.11%, #929fc1 0%, rgba(0, 30, 106, 0.5) 100%)',
-              borderRadius: '20px',
-              alignItems: 'center',
-              textAlign: 'center',
-              margin: '2rem',
-            }}
-          >
-            <Typography variant="h5" component="p" padding="2rem">
-              {t('Move faster with powerful developer tools')}
-            </Typography>
-          </Grid>
-          <Grid
-            item
-            xs={5}
-            sx={{
-              background:
-                'radial-gradient(97.45% 330.08% at 4.95% 10.11%, #929fc1 0%, rgba(0, 30, 106, 0.5) 100%)',
-              borderRadius: '20px',
-              alignItems: 'center',
-              textAlign: 'center',
-              margin: '2rem',
-            }}
-          >
-            <Typography variant="h5" component="p" padding="2rem">
-              {t('Bring your own data and code')}
-            </Typography>
-          </Grid>
-        </Grid>
-        <Typography variant="h2" color="primary" textAlign="center">
-          {t('welcomePage.videoSubtitle')}
-        </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <CardMedia
-            component="iframe"
-            image="https://www.youtube.com/embed/1V3ZY_TXKwU"
-            sx={{
-              width: '50%',
-              minHeight: '30rem',
-              border: 'none',
-              margin: '3rem 0',
-            }}
-          />
+          ></Box>
         </Box>
       </Box>
       <Box
@@ -209,58 +219,69 @@ const WelcomePage = (): JSX.Element => {
           position: 'relative',
         }}
       >
-        <Box
-          component="div"
-          sx={{
-            width: '100%',
-            minHeight: '19rem',
-            background: `url(${boxUpImage}) no-repeat`,
-            backgroundSize: 'contain',
-            position: 'absolute',
-            top: '-26%',
-            zIndex: '5',
-          }}
-        ></Box>
         <Typography variant="h2" color="primary" textAlign="center" position="relative" zIndex="6">
-          {t('Our team')}
+          {t('welcomePage.team')}
         </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'space-evenly', padding: '3rem 0' }}>
-          <Card sx={{ width: 300 }}>
-            <CardMedia sx={{ height: 300 }} image={firstTeamMemberImage} title="Marina" />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: { xs: 'center', md: 'space-evenly' },
+            alignItems: { xs: 'center', md: 'stretch' },
+            padding: { xs: '2rem 0 0', md: '3rem 0' },
+            flexDirection: { xs: 'column', md: 'row' },
+          }}
+        >
+          <Card sx={{ width: { xs: '80%', md: '30%' }, marginBottom: { xs: '2rem', md: '0' } }}>
+            <CardMedia
+              sx={{
+                height: 300,
+                backgroundPosition: { xs: '0 25%', md: '50% 30%' },
+              }}
+              image={firstTeamMemberImage}
+              title="welcomePage.teamMemberFirst"
+            />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Marina
+                {t('welcomePage.teamMemberFirst')}
               </Typography>
-              <Typography variant="body2" color="primary.dark">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industrys standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a type specimen book.
+              <Typography variant="body1" color="primary.dark">
+                {t('welcomePage.teamMemberFirstDescription')}
               </Typography>
             </CardContent>
           </Card>
-          <Card sx={{ width: 300 }}>
-            <CardMedia sx={{ height: 300 }} image={teamLeadImage} title="Pavel" />
+          <Card sx={{ width: { xs: '80%', md: '30%' }, marginBottom: { xs: '2rem', md: '0' } }}>
+            <CardMedia
+              sx={{
+                height: 300,
+                backgroundPosition: { xs: '0 40%', md: '50% 40%' },
+              }}
+              image={teamLeadImage}
+              title={t('welcomePage.teamLead')}
+            />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Pavel
+                {t('welcomePage.teamLead')}
               </Typography>
-              <Typography variant="body2" color="primary.dark">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industrys standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a type specimen book
+              <Typography variant="body1" color="primary.dark">
+                {t('welcomePage.teamLeadDescription')}
               </Typography>
             </CardContent>
           </Card>
-          <Card sx={{ width: 300 }}>
-            <CardMedia sx={{ height: 300 }} image={secondTeamMemberImage} title="Alesia" />
+          <Card sx={{ width: { xs: '80%', md: '30%' }, marginBottom: { xs: '2rem', md: '0' } }}>
+            <CardMedia
+              sx={{
+                height: 300,
+                backgroundPosition: { xs: '0 25%', md: '50% 30%' },
+              }}
+              image={secondTeamMemberImage}
+              title={t('welcomePage.teamMemberSecond')}
+            />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Alesia
+                {t('welcomePage.teamMemberSecond')}
               </Typography>
-              <Typography variant="body2" color="primary.dark">
-                LLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industrys standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a type specimen book.
+              <Typography variant="body1" color="primary.dark">
+                {t('welcomePage.teamMemberSecondDescription')}
               </Typography>
             </CardContent>
           </Card>
