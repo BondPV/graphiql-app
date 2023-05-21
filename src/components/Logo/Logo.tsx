@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { Stack, Typography } from '@mui/material';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import { Stack, Typography } from '@mui/material';
 
 const Logo = (): JSX.Element => {
   const navigate = useNavigate();
