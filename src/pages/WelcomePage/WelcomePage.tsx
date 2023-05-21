@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Button, CardMedia, Card, CardContent, Grid } from '@mui/material';
@@ -9,15 +9,17 @@ import firstTeamMemberImage from '@/assets/team-member1.jpg';
 import secondTeamMemberImage from '@/assets/team-member2.jpg';
 import teamLeadImage from '@/assets/team-lead.jpg';
 import { AuthContext } from '@/App/App';
+import { Container } from '@mui/material';
+import { auth } from '@/Api/firebase';
 import { ROUTE } from '@/constants';
 
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const isAuth = useContext(AuthContext);
+  const [user] = useAuthState(auth);
 
   const redirect = (): void => {
-    if (isAuth) {
+    if (user) {
       navigate(ROUTE.mainPage);
     } else {
       navigate(ROUTE.signInPage);

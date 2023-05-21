@@ -2,7 +2,11 @@ import { IRequestFetch } from '@/types';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const requestToGraphQL = async ({ query, variables, headers }: IRequestFetch): Promise<string> => {
+const requestToGraphQL = async ({
+  query,
+  variables,
+  headers,
+}: IRequestFetch): Promise<object | string> => {
   try {
     const response = await fetch(API_URL, {
       method: 'POST',
@@ -16,9 +20,9 @@ const requestToGraphQL = async ({ query, variables, headers }: IRequestFetch): P
     return await response.json();
   } catch (error: unknown) {
     if (error instanceof Error) {
-      return error.message;
+      return `Error: ${error.message}`;
     } else {
-      return 'Server error';
+      return 'Error: server error';
     }
   }
 };

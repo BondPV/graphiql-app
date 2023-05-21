@@ -1,46 +1,29 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signOut } from '@firebase/auth';
+import { signOut } from '@firebase/auth';
 import MenuIcon from '@mui/icons-material/Menu';
-import {
-  Alert,
-  Box,
-  Button,
-  IconButton,
-  Menu,
-  MenuItem,
-  Snackbar,
-  Typography,
-} from '@mui/material';
-import { AuthContext } from '@/App/App';
+import { Box, Button, Container, IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import { auth } from '@/Api/firebase';
 import { ERROR_MESSAGE, ROUTE } from '@/constants';
+import { useAppDispatch } from '@/hooks/redux';
+import { setAlertMsg } from '@/redux/slice';
 
 const NavMenu = (): JSX.Element => {
   const [pagesLink, setPagesLink] = useState(['']);
-  const [error, setError] = useState('');
-  const [open, setOpen] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
-  const isAuth = useContext(AuthContext);
-  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   const handleLogout = async (): Promise<void> => {
     try {
       await signOut(auth);
       navigate(ROUTE.welcomePage);
     } catch (error) {
-      setError(ERROR_MESSAGE(t).unknownError);
-      setOpen(true);
+      dispatch(setAlertMsg({ message: ERROR_MESSAGE(t).unknownError }));
     }
   };
 
@@ -74,12 +57,18 @@ const NavMenu = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (isAuth) {
+    if (loading) return;
+
+    if (user) {
       setPagesLink(['Main', 'Logout']);
     } else {
       setPagesLink(['SignIn', 'SignUp']);
     }
-  }, [isAuth]);
+  }, [user, loading]);
+
+  if (loading) {
+    return <Container></Container>;
+  }
 
   return (
     <nav>
@@ -138,19 +127,6 @@ const NavMenu = (): JSX.Element => {
           </Button>
         ))}
       </Box>
-      <Snackbar
-        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
-        open={open}
-        autoHideDuration={5000}
-        onClose={handleClose}
-        sx={{
-          marginBottom: 10,
-        }}
-      >
-        <Alert onClose={handleClose} variant="filled" severity="error" sx={{ width: '100%' }}>
-          {error}
-        </Alert>
-      </Snackbar>
     </nav>
   );
 };

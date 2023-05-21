@@ -1,50 +1,61 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { IconButton, Tooltip } from '@mui/material';
 import { requestToGraphQL } from '@/Api/requestsApi';
-import { IRequestFetch } from '@/types';
+import { INTROSPECTION_QUERY } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setSchema } from '@/redux/slice';
+import { IDocumentationSchema, IRequestFetch } from '@/types';
 
-const ButtonSchema = (): JSX.Element => {
+interface IButtonProps {
+  toggleDrawer: () => void;
+}
+
+const ButtonSchema = ({ toggleDrawer }: IButtonProps): JSX.Element => {
+  const schema = useAppSelector((state) => state.schemaQueryType).schema;
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const schemaQuery = `query {
-    __schema {
-      types {
-        name
-        kind
-        description
-        fields {
-          name
-          description
-          type {
-            name
-            kind
-          }
-        }
+  const handleClickGetSchema = async (): Promise<void> => {
+    toggleDrawer();
+  };
+
+  useEffect(() => {
+    const schemaRequest: IRequestFetch = {
+      query: INTROSPECTION_QUERY,
+      variables: {},
+      headers: {},
+    };
+
+    async function fetchData(): Promise<void> {
+      const responseData = await requestToGraphQL(schemaRequest);
+
+      if (responseData instanceof Object && 'data' in responseData) {
+        dispatch(setSchema(responseData as IDocumentationSchema));
       }
     }
-  }`;
 
-  const schemaRequest: IRequestFetch = {
-    query: schemaQuery,
-    variables: {},
-    headers: {},
-  };
+    fetchData();
+  }, [dispatch]);
 
-  const handleClickGetSchema = async (): Promise<void> => {
-    const value = await requestToGraphQL(schemaRequest);
-
-    // TODO value processing
-    console.log(value);
-  };
-
-  return (
-    <Tooltip title={t('Documentation')} placement="bottom">
-      <IconButton onClick={handleClickGetSchema}>
-        <DescriptionIcon sx={{ fontSize: '30px' }} />
-      </IconButton>
-    </Tooltip>
-  );
+  if (!schema) {
+    return (
+      <Tooltip title={t('notDocumentation')} placement="bottom">
+        <IconButton>
+          <DescriptionIcon sx={{ fontSize: '30px', cursor: 'not-allowed', opacity: '0.4' }} />
+        </IconButton>
+      </Tooltip>
+    );
+  } else {
+    return (
+      <Tooltip title={t('documentation')} placement="bottom">
+        <IconButton onClick={handleClickGetSchema}>
+          <DescriptionIcon sx={{ fontSize: '30px' }} />
+        </IconButton>
+      </Tooltip>
+    );
+  }
 };
 
 export { ButtonSchema };
