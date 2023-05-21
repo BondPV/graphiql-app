@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import { Stack, Typography } from '@mui/material';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 const Logo = (): JSX.Element => {
   const navigate = useNavigate();
@@ -16,25 +16,24 @@ const Logo = (): JSX.Element => {
       alignItems="center"
       onClick={redirectToWelcomePage}
       sx={{
+        transition: '0.3s',
         '&:hover': {
-          color: 'secondary.main',
+          color: 'primary.main',
         },
       }}
     >
-      <AutoAwesomeMosaicIcon sx={{ cursor: 'pointer' }} />
+      <QueryStatsIcon sx={{ cursor: 'pointer' }} />
       <Typography
-        variant="h6"
+        variant="h5"
         noWrap
-        component="div"
+        component="span"
         sx={{
-          fontWeight: 500,
-          letterSpacing: '.2rem',
-          color: 'inherit',
-          textDecoration: 'none',
+          fontWeight: 400,
+          letterSpacing: '-0.05rem',
           cursor: 'pointer',
         }}
       >
-        LOGO
+        GCE
       </Typography>
     </Stack>
   );
