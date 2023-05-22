@@ -3,8 +3,8 @@ import logoRS from '@/assets/rs-school-js.svg';
 import { AuthorLink } from '../AuthorLink';
 
 const AUTHORS = [
-  { name: 'Pavel', url: 'https://github.com/BondPV' },
   { name: 'Marina', url: 'https://github.com/MarinaStepanchuk' },
+  { name: 'Pavel', url: 'https://github.com/BondPV' },
   { name: 'Alesia', url: 'https://github.com/Alesia-V175' },
 ];
 

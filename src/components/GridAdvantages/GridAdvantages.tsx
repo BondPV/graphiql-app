@@ -33,9 +33,13 @@ const GridAdvantages = (): JSX.Element => {
             alignItems: 'center',
             textAlign: 'center',
             margin: '2rem',
+            transition: '0.3s',
+            '&:hover': {
+              transform: 'scale(1.05)',
+            },
           }}
         >
-          <Typography variant="h5" component="p" padding="2rem">
+          <Typography variant="body1" component="p" padding="2rem">
             {t(item.text)}
           </Typography>
         </Grid>
