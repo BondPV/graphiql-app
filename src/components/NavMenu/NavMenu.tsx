@@ -113,7 +113,15 @@ const NavMenu = (): JSX.Element => {
           <Button
             key={page}
             onClick={(): void => handleRoute(page)}
-            sx={{ my: 2, color: 'white', display: 'block' }}
+            sx={{
+              my: 2,
+              color: 'white',
+              display: 'block',
+              transition: '0.3s',
+              '&:hover': {
+                color: 'primary.main',
+              },
+            }}
           >
             {t(`pages.${page}`)}
           </Button>
