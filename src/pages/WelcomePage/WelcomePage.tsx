@@ -41,8 +41,7 @@ const WelcomePage = (): JSX.Element => {
           alignItems: 'center',
           justifyContent: 'center',
           background: `url(${backgroundImage}) no-repeat 55% -33rem`,
-          // minHeight: '62rem',
-          padding: '5rem 3rem',
+          padding: { xs: '2rem 1rem', md: '8rem 3rem' },
         }}
       >
         <Typography
@@ -61,11 +60,22 @@ const WelcomePage = (): JSX.Element => {
         <Typography
           variant="body1"
           component="p"
-          sx={{ width: '55%', textAlign: 'center', padding: '3rem 0' }}
+          sx={{
+            width: { xs: '80%', md: '55%' },
+            textAlign: 'center',
+            padding: { xs: '2rem 0 0', md: '3rem 0' },
+          }}
         >
           {t('welcomePage.description')}
         </Typography>
-        <Button variant="contained" onClick={redirect} sx={{ width: '30%', margin: '2rem 0' }}>
+        <Button
+          variant="contained"
+          onClick={redirect}
+          sx={{
+            width: { xs: '70%', sm: '50%', md: '30%' },
+            margin: '2rem 0',
+          }}
+        >
           {t('welcomePage.startButton')}
         </Button>
       </Box>
@@ -81,13 +91,13 @@ const WelcomePage = (): JSX.Element => {
           }}
         ></Box>
         <Box>
-          <Typography variant="h3" color="primary" textAlign="center">
+          <Typography variant="h3" color="primary" textAlign="center" padding="0 2rem">
             {t('welcomePage.subtitleAdvantages')}
           </Typography>
           <GridAdvantages />
         </Box>
         <Box component="section">
-          <Typography variant="h3" color="primary" textAlign="center">
+          <Typography variant="h3" color="primary" textAlign="center" padding="0 2rem">
             {t('welcomePage.videoSubtitle')}
           </Typography>
           <VideoCard videoUrl={VIDEO_URL} />
@@ -104,7 +114,7 @@ const WelcomePage = (): JSX.Element => {
         </Box>
       </Box>
       <Box component="section" sx={{ backgroundColor: 'primary.light' }}>
-        <Typography variant="h3" color="primary" textAlign="center">
+        <Typography variant="h3" color="primary" textAlign="center" padding="0 2rem">
           {t('welcomePage.team')}
         </Typography>
         <TeamCards />

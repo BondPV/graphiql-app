@@ -18,7 +18,7 @@ const GridAdvantages = (): JSX.Element => {
       spacing={{ xs: 1, md: 2 }}
       columns={{ xs: 1, md: 12 }}
       color="primary.contrastText"
-      padding="2rem 0 3rem"
+      padding={{ xs: '2rem', md: '2rem 0 3rem' }}
       display="flex"
       justifyContent="space-evenly"
     >
@@ -32,14 +32,14 @@ const GridAdvantages = (): JSX.Element => {
             borderRadius: '20px',
             alignItems: 'center',
             textAlign: 'center',
-            margin: '2rem',
+            margin: { xs: '1rem 0', sm: '2rem' },
             transition: '0.3s',
             '&:hover': {
               transform: 'scale(1.05)',
             },
           }}
         >
-          <Typography variant="body1" component="p" padding="2rem">
+          <Typography variant="body1" component="p" padding={{ xs: '1rem', sm: '2rem' }}>
             {t(item.text)}
           </Typography>
         </Grid>
