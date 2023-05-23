@@ -11,6 +11,8 @@ import { TeamCards } from '@/components/TeamCards';
 import { VideoCard } from '@/components/VideoCard';
 import { COLORS, ROUTE, VIDEO_URL } from '@/constants';
 
+const CONTENT_HEIGHT = 'calc(100vh - 240px)';
+
 const WelcomePage = (): JSX.Element => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -41,7 +43,8 @@ const WelcomePage = (): JSX.Element => {
           alignItems: 'center',
           justifyContent: 'center',
           background: `url(${backgroundImage}) no-repeat 55% -33rem`,
-          padding: { xs: '2rem 1rem', md: '8rem 3rem' },
+          padding: { xs: '2rem 1rem', md: '6rem 3rem' },
+          minHeight: CONTENT_HEIGHT,
         }}
       >
         <Typography

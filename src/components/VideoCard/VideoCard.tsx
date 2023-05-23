@@ -8,7 +8,7 @@ const VideoCard = ({ videoUrl }: IVideoCard): JSX.Element => {
   const { t } = useTranslation();
 
   return (
-    <Card sx={{ background: 'transparent' }}>
+    <Card sx={{ background: 'transparent', boxShadow: 'none' }}>
       {videoUrl ? (
         <CardMedia
           component="iframe"
