@@ -1,8 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Container, Typography } from '@mui/material';
-import notFoundImg from '@/assets/not-found1.svg';
-import { COLORS } from '@/constants';
+import notFoundImg from '@/assets/not-found.svg';
+import { COLORS, MAIN_CONTENT_HEIGHT } from '@/constants';
+
+const CONTENT_HEIGHT = 'calc(100vh - 300px)';
+const IMAGE_WRAP_HEIGHT = 'calc(100vh - 236px)';
 
 const NotFoundPage = (): JSX.Element => {
   const { t } = useTranslation();
@@ -19,8 +22,8 @@ const NotFoundPage = (): JSX.Element => {
         flexDirection: { xs: 'column-reverse', md: 'row' },
         justifyContent: { xs: 'center', md: 'space-evenly' },
         alignItems: 'center',
-        minHeight: { xs: 'calc(100vh - 304px)', sm: 'calc(100vh - 236px)' },
-        padding: { xs: '2 rem 2 rem 0', sm: '2rem' },
+        minHeight: { xs: CONTENT_HEIGHT, sm: MAIN_CONTENT_HEIGHT },
+        padding: { xs: '2rem 2rem 0', sm: '2rem' },
         color: COLORS.primaryDark,
         textAlign: 'center',
       }}
@@ -28,7 +31,7 @@ const NotFoundPage = (): JSX.Element => {
       <Box
         sx={{
           width: { xs: '100%', md: '50%' },
-          minHeight: { xs: '610px', md: 'calc(100vh - 236px)' },
+          minHeight: { xs: '30vh', md: IMAGE_WRAP_HEIGHT },
           background: `url(${notFoundImg}) no-repeat 50% 50%`,
           backgroundSize: 'contain',
         }}
