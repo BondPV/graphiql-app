@@ -47,7 +47,7 @@ const ERROR_CODES_FIREBASE = {
 
 const DOC_INITIAL_VALUE = 'Query';
 
-const VIDEO_URL = 'https://www.youtube.com/embed/1V3ZY_TXKwU';
+const VIDEO_URL = 'https://www.youtube.com/embed/sYiv9UEa4pI';
 
 export {
   MAIN_CONTENT_HEIGHT,

@@ -36,7 +36,7 @@
   },
   "registrationSuccessful" : "Registration successful",
   "authorizationSuccessful" : "Authorization successful",
-  "responsePlaceholder": "Hit the Play Button to get a response here",
+  "responsePlaceholder": "Press the Play Button to get a response here",
   "documentation": "Documentation",
   "notDocumentation": "documentation not available",
   "Loading": "Loading...",
