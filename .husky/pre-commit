@@ -8,9 +8,4 @@ if [ "$branch" = "main" ]; then
   exit 1
 fi
 
-if [ "$branch" = "develop" ]; then
-  echo "You can't commit directly to develop branch. Please create your own branch and use PR"
-  exit 1
-fi
-
 npm run lint
