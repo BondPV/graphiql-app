@@ -119,7 +119,7 @@ const NavMenu = (): JSX.Element => {
               display: 'block',
               transition: '0.3s',
               '&:hover': {
-                color: 'primary.main',
+                color: 'primary.light',
               },
             }}
           >
