@@ -14,7 +14,7 @@ const VideoCard = ({ videoUrl }: IVideoCard): JSX.Element => {
           component="iframe"
           image={videoUrl}
           sx={{
-            width: { xs: '80%', md: '50%' },
+            width: { xs: '80%', md: '70%', lg: '60%' },
             minHeight: { xs: '17rem', sm: '30rem' },
             border: 'none',
             margin: '3rem auto',

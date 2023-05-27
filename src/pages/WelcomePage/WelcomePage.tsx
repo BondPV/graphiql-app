@@ -9,7 +9,7 @@ import boxUpImage from '@/assets/box-wave-up.svg';
 import { GridAdvantages } from '@/components/GridAdvantages';
 import { TeamCards } from '@/components/TeamCards';
 import { VideoCard } from '@/components/VideoCard';
-import { COLORS, ROUTE, VIDEO_URL } from '@/constants';
+import { APP_NAME, COLORS, ROUTE, VIDEO_URL } from '@/constants';
 
 const CONTENT_HEIGHT = 'calc(100vh - 240px)';
 
@@ -58,7 +58,7 @@ const WelcomePage = (): JSX.Element => {
             textShadow: { xs: '-2px 2px 0px #001E6A', md: '-6px 4px 0px #001E6A' },
           }}
         >
-          {t('GraphiQL Country Explorer')}
+          {t(APP_NAME)}
         </Typography>
         <Typography
           variant="body1"
