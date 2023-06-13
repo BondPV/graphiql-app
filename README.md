@@ -14,9 +14,21 @@
 
 ### 🛠️ Run project
 
-- "npm install": for install required packages
-- "npm run dev": for start project in developer mode
-- "npm run build": for prepare application build
+1. Clone this repo and navigate to it
+2. Create an `.env.local` file on the project root folder with your Firebase credentials
+```js
+VITE_API_URL = 'https://countries.trevorblades.com/'
+VITE_FIREBASE_API_KEY = 'YOUR_KEY'
+VITE_FIREBASE_AUTH_DOMAIN = 'YOUR_KEY'
+VITE_FIREBASE_PROJECT_ID = 'YOUR_KEY'
+VITE_FIREBASE_STORAGE_BUCKET = 'YOUR_KEY'
+VITE_FIREBASE_MESSAGING_SENDER_ID = 'YOUR_KEY'
+VITE_FIREBASE_APP_ID = 'YOUR_KEY'
+```
+3. Download the dependencies, run `npm install`
+4. Start the project in dev mode, run `npm run dev`
+5. Open http://localhost:5173 with your browser to see the result.
+6. For prepare application build run `npm run build`
 
 ### ⚙️ Tech Stack
 

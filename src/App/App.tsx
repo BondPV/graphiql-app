@@ -2,7 +2,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { auth } from '@/Api/firebase';
 import { Layout } from '@/components/Layout';
-import Preloader from '@/components/Preloader/Preloader';
+import { Preloader } from '@/components/Preloader';
 import { ROUTE } from '@/constants';
 import { MainPage, NotFoundPage, SignInPage, SignUpPage, WelcomePage } from '@/pages';
 

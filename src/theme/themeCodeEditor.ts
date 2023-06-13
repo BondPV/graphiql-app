@@ -1,16 +1,17 @@
 import { tags as t } from '@lezer/highlight';
 import { createTheme } from '@uiw/codemirror-themes';
+import { COLORS } from '@/constants';
 
 const codeEditorTheme = createTheme({
   theme: 'light',
   settings: {
-    background: '#ffffff',
-    foreground: '#001E6A',
+    background: COLORS.background,
+    foreground: COLORS.primaryDark,
     caret: '#5d00ff',
     selection: '#036dd626',
     selectionMatch: '#036dd626',
     lineHighlight: '#8a91991a',
-    gutterBackground: '#fff',
+    gutterBackground: COLORS.background,
     gutterForeground: '#8a919966',
   },
   styles: [

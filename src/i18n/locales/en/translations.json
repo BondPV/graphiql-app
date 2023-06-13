@@ -6,15 +6,13 @@
   },
   "pages": {
     "Main": "Playground",
-    "SignIn": "SignIn",
-    "SignUp": "SignUp",
+    "SignIn": "Sign In",
+    "SignUp": "Sign Up",
     "Logout": "Logout"
   },
   "English": "English",
   "Russian": "Russian",
   "mainPage": "Main Page",
-  "welcomePage": "Welcome Page",
-  "startButton": "Start",
   "errors": {
     "fieldIsEmpty": "field is empty",
     "invalidEmail": "the email is not valid",
@@ -24,7 +22,8 @@
     "emailAlreadyInUse": "This email address is already registered.",
     "wrongPassword": "Incorrect password entered.",
     "userNotFound": "The user with this email address is not registered, please go to the registration",
-    "invalidEmailFirebase": "Invalid email address entered"
+    "invalidEmailFirebase": "Invalid email address entered",
+    "requestFailed": "request failed"
   },
   "formAuthorization": {
     "signIn": "Sign In",
@@ -35,6 +34,37 @@
     "createAccountLink": "Don`t have an account? Create an account →",
     "navigateToSignInLink": "Already have an account? Sign in →"
   },
+  "registrationSuccessful" : "Registration successful",
+  "authorizationSuccessful" : "Authorization successful",
+  "responsePlaceholder": "Press the Play Button to get a response here",
+  "documentation": "Documentation",
+  "notDocumentation": "documentation not available",
+  "Loading": "Loading...",
+  "docsDescription": "A GraphQL schema provides a root type for each kind of operation.",
+  "somethingIsBroken": "Oops, something is broken ...",
   "Documentation": "Documentation",
-  "ExecuteQuery": "Execute Query"
+  "ExecuteQuery": "Execute Query",
+  "welcomePage": {
+    "description": "This application is the interactive development environment for obtaining information about countries via a GraphQL API. It provides a user-friendly interface for writing and sending requests to API, and getting responses. Allows you to generate queries based on the GraphQL API schema, which simplifies the development and testing processes.",
+    "startButton": "Get started",
+    "videoSubtitle": "How to use the app",
+    "subtitleAdvantages": "Advantages",
+    "advantageItemFirst": "User-friendly interface for writing and sending API requests",
+    "advantageItemSecond": "Support different types of devices, including desktop and mobile Web Browsers",
+    "advantageItemThird": "Get information about countries, continents and languages via the GraphQL API",
+    "advantageItemFourth": "Visualization response from the server in a separate section of the editor",
+    "team": "Our team",
+    "teamMemberFirst":  "Marina",
+    "teamMemberSecond": "Alesia",
+    "teamLead": "Pavel",
+    "teamMemberFirstDescription": "Created sign in and sign up pages. Implemented authentication using Firebase. Made client-side validation. Create user redirection to the welcome page when the token expires. Implemented routing.",
+    "teamLeadDescription": "Coordinated team activities and project setup. Created the editor page: the block for editing requests and variables and the section for answers. Implemented localization of the application into 2 languages. Wrote documentation.",
+    "teamMemberSecondDescription": "Created the single design for the entire application. Developed the welcome page. Created the 404 page. Implemented adaptive layout. Created the video tutorial with the explanation of how to use the app.",
+    "videoError": "Video is not available"
+  },
+  "notFoundPage": {
+    "title": "OOOPS!",
+    "subtitle": "Something went wrong...",
+    "button": "Go home"
+  }
 }
